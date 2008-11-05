@@ -409,8 +409,10 @@ public class VideoTransmit5 implements Runnable{
     	//Rather than binding using JNDI, I use Spring RMI which uses
     	//Dependency Injection.
     	
+    	
+    	
     	ApplicationContext context = 
-    		new FileSystemXmlApplicationContext("./conf/SpringRMIServer.xml");
+    		new FileSystemXmlApplicationContext("."+File.separator+"conf"+File.separator+"SpringRMIServer.xml");
     		//new FileSystemXmlApplicationContext("SpringRMIServer.xml");
     }
     

@@ -2,6 +2,7 @@ package org.sample;
 
 import java.awt.AWTException;
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -31,6 +32,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 
 	int x = 0,y = 0;
 	Robot r = null;
+	Rectangle rect2;
 	
 	public RemoteThingsImpl(){
 		
@@ -44,9 +46,20 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 	
 	public void remoteMouse(int x, int y) {
 		
-		r.mouseMove((1024/200)*x,((int)(768/200)*y));
+		double tempX = (double)x;
+		double tempY = (double)y;
+		double resX = (1024/rect2.getWidth())*tempX;
+		double resY = (768/rect2.getHeight())* tempY;
 		
-		System.err.println((1024/200)*x + " " + (768/200)*y);
+		//r.mouseMove((int)(1024/rect2.getWidth())*x,((int)(768/rect2.getHeight())*y));
+		
+		System.err.println("rec double X: " + resX + " rec double Y: " + resY);
+		
+		r.mouseMove((int)resX, (int)resY);
+		
+		//System.err.println((int)(1024/rect2.getWidth())*x + " " + (int)(768/rect2.getHeight())*y);
+	
+		System.err.println("rec X: " + (int)resX + " rec Y: " + (int)resY);
 	}
 	
 	public void remoteMousePress(int buttons){
@@ -134,5 +147,11 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		
 		r.keyRelease(ke.getKeyCode());
 		
+	}
+
+	@Override
+	public Rectangle remoteGetScreenSize(Rectangle rect) {
+		rect2 = rect;
+		return rect2;
 	}
 }

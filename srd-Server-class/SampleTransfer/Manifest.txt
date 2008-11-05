@@ -1,0 +1,3 @@
+Main-Class: org.sample.VideoTransmit5
+Class-Path: jmf.jar spring-2.0.6.jar 
+
