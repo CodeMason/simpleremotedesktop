@@ -1,0 +1,40 @@
+#labels Featured,Phase-Requirements
+= Introduction =
+
+This is a remote desktop application in Java. 
+
+It uses the following technologies:
+   * Java Media Framework
+   * java.awt.Robot class
+   * Spring RMI
+
+*JMF, Java Media Framework* This protocol is invented for real- 
+time streaming on the Internet.Real-time streaming means video con- 
+ferencing and VoIP applications. These applications can’t delay to de- 
+liver data but drop some data. There is a Java framework called ”Java 
+Media Framework” implementing RTP for the applications. I used the 
+protocol to deliver the server’s screen to the client implementing the 
+framework. 
+
+*java.awt.Robot class* This class is originally written for automated 
+tests. It means that when we want to test programs, we make a pro- 
+gram which implements this class to test them. This class has methods 
+for typing characters, moving the mouse, wheeling the mouse and cap- 
+ture the screen. What the class differentiates from others is about the 
+mouse actions. There are other classes that deal with the position of 
+the mouse on the screen. They also calculate the position, but they 
+don’t move the mouse actually. So even though we want to click a but- 
+ton or move the mouse on a test, we can’t accomplish the task. Here is 
+a trick about how to move the mouse and type characters on another 
+screen remotely.
+
+*Spring RMI* Remote Method Invocation, RMI This is basically a remote procedure 
+call. When we want to use RMI, we register interfaces that have meth- 
+ods which we want to invoke remotely and put them and their imple- 
+mentations on a place where clients can access anywhere in the world. 
+After these steps, clients access the registry to look up the methods 
+and invoke the methods that they want. These mechanisms make the 
+remote desktop work. Robot class below takes care of the mouse ac- 
+tions and typing characters, but we need a way to send these messages 
+to the server. RMI does the job. So I use RMI to invoke Robot class’s 
+methods remotely. 
