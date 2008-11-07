@@ -1,0 +1,10 @@
+#summary One-sentence summary of this page.
+#labels Phase-Deploy
+
+= Quick Start =
+
+Here is the direction about how to start the application as quickly as possible.
+
+ #1 Download the JNLP files, (.jnlp) for the server and client. (The files are put soon)
+ #2 Double click the icons of those files.
+ #3 Play with the application.
