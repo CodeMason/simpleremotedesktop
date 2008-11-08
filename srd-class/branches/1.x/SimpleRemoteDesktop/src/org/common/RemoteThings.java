@@ -16,7 +16,9 @@ public interface RemoteThings {
 	void remoteMousePress(int buttons);
 	void remoteMouseRelease(int buttons);
 	void remoteMouseWheel(int amount);
-	void remoteDragAndDrop(String name,byte[] b) ;  // in progress
+	void remoteMouseDrag(int x,int y); //in process
+	void remoteDragAndDrop(String name,byte[] b) ;
 	void remoteKeyBoardsPress(KeyEvent ke);
 	void remoteKeyBoardsRelease(KeyEvent ke);
+	Rectangle remoteGetScreenSize(Rectangle rect);
 }

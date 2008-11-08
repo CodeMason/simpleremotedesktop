@@ -32,6 +32,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 
 	int x = 0,y = 0;
 	Robot r = null;
+	Rectangle rect2;
 	
 	public RemoteThingsImpl(){
 		
@@ -45,9 +46,18 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 	
 	public void remoteMouse(int x, int y) {
 		
-		r.mouseMove((1024/(200))*x,(768/(200)*y));
+		double tempX = (double)x;
+		double tempY = (double)y;
+		double resX = (1024/rect2.getWidth()) * tempX;
+		double resY = (768/rect2.getHeight()) * tempY;
 		
-		System.err.println((1024/100)*x + " " + (768/100)*y);
+		//r.mouseMove((int)(1024/(rect2.getWidth()))*x,((int)(768/(rect2.getHeight()))*y));
+		
+		System.err.println("rec double X: " + resX + " " + "rec double Y: " + resY);
+		
+		r.mouseMove((int)resX, (int)resY);
+		
+		System.err.println("rec X: " + (int)resX + "rect Y: " + (int)resY);
 	}
 	
 	public void remoteMousePress(int buttons){
@@ -136,5 +146,19 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		r.keyRelease(ke.getKeyCode());
 		
 	}
+	
+	
+	 public Rectangle remoteGetScreenSize(Rectangle rect){
+		 rect2 = rect;
+	 	return rect2;
+	  }
+
+	 
+	//this is in process 
+	public void remoteMouseDrag(int x,int y) {
+		System.out.println("Dragging ...");
+		remoteMouse(x,y);
+	}
+	 
 }
 

@@ -23,6 +23,9 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.datatransfer.Transferable;
+import java.awt.dnd.DragGestureListener;
+import java.awt.dnd.DragSource;
+import java.awt.dnd.DragSourceListener;
 import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
@@ -62,6 +65,9 @@ public class Players implements
 	Component c;
 	int x = 0, y = 0;
 	String url = null;
+	
+	public int originalX;
+	public int originalY;
 	
 	public Players(){
 		frame = new JFrame("Sample");
@@ -187,10 +193,20 @@ public class Players implements
     }
 
     public void mouseDragged(MouseEvent me){
-    	System.out.println("Dragging ....");
+    	
+    	try{
+    		Main.rmiSpringService.remoteMouseDrag(this.originalX+me.getX(),this.originalY+me.getY());
+    	}catch(RemoteConnectFailureException e){
+    		System.err.println("The server might be down right now");
+    		System.exit(1);
+    	}
     }
     
     public void mousePressed(MouseEvent me){
+    	
+    	//get the original coordinate
+    	this.originalX = me.getX();
+    	this.originalY = me.getY();
     	
     	int buttons = me.getButton();
     	
@@ -279,6 +295,22 @@ public class Players implements
     	public void dragExit(DropTargetEvent dte){
     		
     		System.err.println("Exited");
+    		
+    		/*
+    		 * I should do somethinf here to make
+    		 * the screen drag and drop from the server
+    		 * to the client.
+    		 * 
+    		 * Something like, boolean remoteMouseDrag(int x,int y)
+    		 * 
+    		 * if the method returns true, which means
+    		 * it's still dragging some object
+    		 * and exit the JFrame. In this case, drag and drop
+    		 * happens.
+    		 * 
+    		 * Otherwise, it's not happening.
+    		 * 
+    		 */
     	}
     	
     	public void dragOver(DropTargetDragEvent dtde){
@@ -288,7 +320,6 @@ public class Players implements
     	
     	//This is in progress
     	public void drop(DropTargetDropEvent dtde){
-    		
     		//get the dropped object and try to figure out what it is
     		Transferable tf = dtde.getTransferable();
     		
@@ -484,6 +515,16 @@ public class Players implements
 		rect = frame.getBounds();
 		
 		System.out.println("rect : " + rect.getWidth() + " " + rect.getHeight());
+		System.out.println("rect x :" + rect.x + " " + "rect y : " + rect.y);
+		
+		try{
+			Main.rmiSpringService.remoteGetScreenSize(rect);
+			System.out.println(Main.rmiSpringService.remoteGetScreenSize(rect));
+		}catch(RemoteConnectFailureException e){
+			System.err.println("The server might be down");
+		}catch(NullPointerException ee){
+			Main.rmiSpringService.remoteGetScreenSize(frame.getBounds());
+		}
 	}
 
 	public void componentShown(ComponentEvent arg0) {
