@@ -48,18 +48,16 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		
 		double tempX = (double)x;
 		double tempY = (double)y;
-		double resX = (1024/rect2.getWidth())*tempX;
-		double resY = (768/rect2.getHeight())* tempY;
+		double resX = (1024/rect2.getWidth()) * tempX;
+		double resY = (768/rect2.getHeight()) * tempY;
 		
-		//r.mouseMove((int)(1024/rect2.getWidth())*x,((int)(768/rect2.getHeight())*y));
+		//r.mouseMove((int)(1024/(rect2.getWidth()))*x,((int)(768/(rect2.getHeight()))*y));
 		
-		System.err.println("rec double X: " + resX + " rec double Y: " + resY);
+		System.err.println("rec double X: " + resX + " " + "rec double Y: " + resY);
 		
 		r.mouseMove((int)resX, (int)resY);
 		
-		//System.err.println((int)(1024/rect2.getWidth())*x + " " + (int)(768/rect2.getHeight())*y);
-	
-		System.err.println("rec X: " + (int)resX + " rec Y: " + (int)resY);
+		System.err.println("rec X: " + (int)resX + "rect Y: " + (int)resY);
 	}
 	
 	public void remoteMousePress(int buttons){
@@ -148,10 +146,19 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		r.keyRelease(ke.getKeyCode());
 		
 	}
+	
+	
+	 public Rectangle remoteGetScreenSize(Rectangle rect){
+		 rect2 = rect;
+	 	return rect2;
+	  }
 
-	@Override
-	public Rectangle remoteGetScreenSize(Rectangle rect) {
-		rect2 = rect;
-		return rect2;
+	 
+	//this is in process 
+	public void remoteMouseDrag(int x,int y) {
+		System.out.println("Dragging ...");
+		remoteMouse(x,y);
 	}
+	 
 }
+
