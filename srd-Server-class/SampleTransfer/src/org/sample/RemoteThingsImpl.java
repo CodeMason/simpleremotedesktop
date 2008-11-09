@@ -158,6 +158,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 	public void remoteMouseDrag(int x,int y) {
 		System.out.println("Dragging ...");
 		remoteMouse(x,y);
+		System.out.println(x + " " + y);
 	}
 	 
 }
