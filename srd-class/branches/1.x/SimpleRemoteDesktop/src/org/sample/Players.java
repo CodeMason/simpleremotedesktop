@@ -69,6 +69,9 @@ public class Players implements
 	public int originalX;
 	public int originalY;
 	
+	public int destX;
+	public int destY;
+	
 	public Players(){
 		frame = new JFrame("Sample");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -195,8 +198,8 @@ public class Players implements
     public void mouseDragged(MouseEvent me){
     	
     	try{
-    		Main.rmiSpringService.remoteMouseDrag(this.originalX+me.getX(),this.originalY+me.getY());
-    	}catch(RemoteConnectFailureException e){
+    		Main.rmiSpringService.remoteMouseDrag(this.originalX+(this.destX - this.originalX),this.originalY+(this.destY-this.originalY));
+       	}catch(RemoteConnectFailureException e){
     		System.err.println("The server might be down right now");
     		System.exit(1);
     	}
@@ -204,14 +207,15 @@ public class Players implements
     
     public void mousePressed(MouseEvent me){
     	
-    	//get the original coordinate
-    	this.originalX = me.getX();
-    	this.originalY = me.getY();
-    	
     	int buttons = me.getButton();
     	
-    	if(buttons == MouseEvent.BUTTON1)
+    	if(buttons == MouseEvent.BUTTON1){
     		buttons = InputEvent.BUTTON1_MASK;
+    		
+    		//get the original coordinate
+        	this.originalX = me.getX();
+        	this.originalY = me.getY();
+    	}
     	else if(buttons == MouseEvent.BUTTON2)
     		buttons = InputEvent.BUTTON2_MASK;
     	else if(buttons == MouseEvent.BUTTON3)
@@ -230,8 +234,13 @@ public class Players implements
     	
     	int buttons = me.getButton(); 
     	
-    	if(buttons == MouseEvent.BUTTON1)
+    	if(buttons == MouseEvent.BUTTON1){
     		buttons = InputEvent.BUTTON1_MASK;
+    		
+    		//get the destination coordinate
+    		destX = me.getX();
+    		destY = me.getY();
+    	}	
     	else if(buttons == MouseEvent.BUTTON2)
     		buttons = InputEvent.BUTTON2_MASK;
     	else if(buttons == MouseEvent.BUTTON3)
