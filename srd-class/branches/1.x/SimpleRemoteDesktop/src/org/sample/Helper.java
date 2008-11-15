@@ -14,6 +14,7 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 import org.w3c.dom.*;
 
+import javax.swing.SwingUtilities;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
@@ -26,9 +27,25 @@ import org.xml.sax.SAXException;
 
 public class Helper{
 	
+	public static String ServerAddress = null;
+	
 	public static void main(String[] args) throws IOException{
 		
-		fileCheck();
+		SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				new InputForm();
+			}
+		});
+		
+		/*
+		 * I see what's happening here.
+		 * Since JFrame is on a separate thread, so before it gets the value
+		 * from JTextField, modApplicationContext() starts to run.
+		 * As a result, the method assumes that the text is null.
+		 * 
+		 */
+		
+		//modApplicationContext();
 	}
 	
 	public static void fileCheck() throws IOException{
@@ -69,7 +86,7 @@ public class Helper{
 		
 	}
 	
-	public void modApplicationContext(){
+	public static void modApplicationContext(){
 	/*public static void main(String[] args){
 		
 		if(args.length != 1){
@@ -99,8 +116,10 @@ public class Helper{
 			
 		System.err.println(getCharacterDataFromElement(value));	
 		
+		System.err.println("In there :" + ServerAddress);
+		
 		//this guy makes this method for main()
-		value.setTextContent("seiyakawashima");
+		value.setTextContent(ServerAddress);
 	 
 		//set up a transformer
 		TransformerFactory transfac = TransformerFactory.newInstance();

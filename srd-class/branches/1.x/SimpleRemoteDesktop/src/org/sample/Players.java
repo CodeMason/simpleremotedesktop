@@ -260,11 +260,29 @@ public class Players implements
     }
     
     public void mouseExited(MouseEvent me){
-    	System.err.println("Exited the remote screen");
+    	
+    	//exit dragging an object!!
+    	//if(me.getID() == MouseEvent.MOUSE_DRAGGED){
+    		//System.out.println("Exit dragging");
+    	//}
+    	
+    	if(MouseEvent.BUTTON1 == me.getButton())
+    		System.out.println("having an object");
+    	
+    	System.err.println("Exited the remote screen" + me.getID());
     }
     
-    //Click event has pressed and released events
+    /*
+     * Right now mouseClicked method is the same action as 
+     * mousePressed method.
+     * 
+     */
     public void mouseClicked(MouseEvent me){
+    	
+    	//get the original coordinate
+    	this.originalX = me.getX();
+    	this.originalY = me.getY();
+    	
     	System.err.println("Mouse clicked");
     }
     
