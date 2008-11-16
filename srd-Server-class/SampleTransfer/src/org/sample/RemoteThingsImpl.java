@@ -137,8 +137,13 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 	
 	public void remoteKeyBoardsPress(KeyEvent ke){
 	
-		r.keyPress(ke.getKeyCode());
-	
+		try{
+			r.keyPress(ke.getKeyCode());
+		}catch(IllegalArgumentException e){
+			if((System.getProperty("os.name")).equals("Mac OS X")){
+				r.keyPress(ke.VK_V + ke.VK_CONTROL);
+			}
+		}
 	}
 	
 	public void remoteKeyBoardsRelease(KeyEvent ke){
@@ -159,6 +164,12 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		System.out.println("Dragging ...");
 		remoteMouse(x,y);
 		System.out.println(x + " " + y);
+	}
+
+	@Override
+	public void remoteClipboardPaste() {
+		
+		System.err.println("Now it's working as the first step");
 	}
 	 
 }

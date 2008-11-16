@@ -15,5 +15,6 @@ public interface RemoteThings{
     void remoteDragAndDrop(String name,byte[] b);  
 	void remoteKeyBoardsPress(KeyEvent ke);
 	void remoteKeyBoardsRelease(KeyEvent ke);
+	void remoteClipboardPaste();
 	Rectangle remoteGetScreenSize(Rectangle rect);
 }
