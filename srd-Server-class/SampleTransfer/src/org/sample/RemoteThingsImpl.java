@@ -1,17 +1,22 @@
+                                                                     
+                                                                     
+                                                                     
+                                             
 package org.sample;
 
 import java.awt.AWTException;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Robot;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,6 +26,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import org.common.RemoteThings;
 
@@ -77,6 +83,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		r.mouseRelease(buttons);
 		
 		System.err.println(buttons + " " + "is released.");
+		
 	}
 	
 	public void remoteMouseWheel(int amount){
@@ -84,7 +91,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		r.mouseWheel(amount);
 	}
 	
-	// This method is forced to be dead!!!!!!!!!!!!!!!!!!!
+	//It's slow but it works fine
 	public void remoteDragAndDrop(String name, byte[] b){
 		
 		//System.out.println("You accepted : " + b);
@@ -145,8 +152,8 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		try{
 			r.keyPress(ke.getKeyCode());
 		}catch(IllegalArgumentException e){
-		
-		}
+			
+			}
 	}
 	
 	public void remoteKeyBoardsRelease(KeyEvent ke){
@@ -161,35 +168,57 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 	 	return rect2;
 	  }
 
-	 
-	//this is in process 
 	public void remoteMouseDrag(int x,int y) {
 		System.out.println("Dragging ...");
 		remoteMouse(x,y);
 		System.out.println(x + " " + y);
 	}
 
-	@Override
-	public void remoteClipboardPaste(String name) {
+	public void remoteClipboardCopy() {
 		
-		System.out.println("Now it's working as the first step");
-		System.err.println(name);
-		
-		/*Transferable trans = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
-		DataFlavor[] df = trans.getTransferDataFlavors();
-		File f = null;
-		
-		for(DataFlavor d: df){
-			if(trans != null && trans.isDataFlavorSupported(d)){
+			Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
+			DataFlavor[] df = clip.getAvailableDataFlavors();
+			int count = 0;
+			String str = null;
+			
+			for(DataFlavor d: df){
 				try {
-					f = (File)trans.getTransferData(d);
-				} catch (UnsupportedFlavorException e) {
-					System.err.println("You have some issue with Flavor");
-				} catch (IOException e) {
-					System.err.println("You have some issue with IO");
+					
+					if(clip.isDataFlavorAvailable(d)){
+						count++;
+						//str = clip.getData(d).toString();
+						System.out.println(clip.getData(d));
+						System.out.println(d);
+						break;
+					}
+				}catch (UnsupportedFlavorException e) {
+					System.err.println("Unsupported Flavor issue");
+				}catch(MalformedURLException e){
+					//do nothing
+				}catch(IOException e){
+					System.err.println("IO Issue");
 				}
 			}
-		}*/
+	}
+
+	public String remoteClipboardPaste() {
+
+		Transferable trans = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
+		String str = null;
+		
+		if(trans != null && trans.isDataFlavorSupported(DataFlavor.javaFileListFlavor)){
+			try {
+				str = trans.getTransferData(DataFlavor.javaFileListFlavor).toString();
+				//System.err.println(trans.getTransferData(DataFlavor.javaFileListFlavor).toString());
+				System.err.println("Object is : " + str);
+			} catch (UnsupportedFlavorException e) {
+				System.err.println("Unsupported");
+			} catch (IOException e) {
+				System.err.println("IO Error");
+			}
+		}
+		
+		return str;
 	}
 	 
 }
