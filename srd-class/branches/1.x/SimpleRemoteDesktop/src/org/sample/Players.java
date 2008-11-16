@@ -20,9 +20,11 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 
+import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.ClipboardOwner; // new feature
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
 import java.awt.dnd.DragSourceListener;
@@ -421,9 +423,9 @@ public class Players implements
     	long rTime = 0l;
     	
     	public void keyPressed(KeyEvent ke){
-    		
     		try{
     			Main.rmiSpringService.remoteKeyBoardsPress(ke);
+    			
     		}catch(RemoteConnectFailureException e){
         		System.err.println("The server might be down right now");
         		System.exit(1);
@@ -442,6 +444,13 @@ public class Players implements
     	
     	public void keyTyped(KeyEvent ke){
     		System.err.println("Typed : " + ke.getKeyChar());
+    		
+    		try{
+    			Main.rmiSpringService.remoteClipboardPaste();
+    		}catch(RemoteConnectFailureException e){
+    			System.err.println("The server might be down right now");
+    		}
+    		
     	}
     }
     
@@ -556,6 +565,7 @@ public class Players implements
 
 	public void componentShown(ComponentEvent arg0) {
 		// TODO Auto-generated method stub
-		
 	}
+	
+	
 }

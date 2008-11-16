@@ -16,9 +16,10 @@ public interface RemoteThings {
 	void remoteMousePress(int buttons);
 	void remoteMouseRelease(int buttons);
 	void remoteMouseWheel(int amount);
-	void remoteMouseDrag(int x,int y); //in process
+	void remoteMouseDrag(int x,int y); //It's fine. 
 	void remoteDragAndDrop(String name,byte[] b) ;
 	void remoteKeyBoardsPress(KeyEvent ke);
 	void remoteKeyBoardsRelease(KeyEvent ke);
+	void remoteClipboardPaste();  //I will use this feature rather than remoteDragg() 
 	Rectangle remoteGetScreenSize(Rectangle rect);
 }

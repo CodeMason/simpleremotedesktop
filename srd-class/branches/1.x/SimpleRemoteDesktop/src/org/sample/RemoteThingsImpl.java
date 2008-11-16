@@ -4,9 +4,15 @@ import java.awt.AWTException;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -80,7 +86,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		r.mouseWheel(amount);
 	}
 	
-	// This method is forced to be dead!!!!!!!!!!!!!!!!!!!
+	//It's slow but it works fine
 	public void remoteDragAndDrop(String name, byte[] b){
 		
 		//System.out.println("You accepted : " + b);
@@ -138,8 +144,11 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 	
 	public void remoteKeyBoardsPress(KeyEvent ke){
 	
-		r.keyPress(ke.getKeyCode());
-	
+		try{
+			r.keyPress(ke.getKeyCode());
+		}catch(IllegalArgumentException e){
+			
+			}
 	}
 	
 	public void remoteKeyBoardsRelease(KeyEvent ke){
@@ -154,13 +163,15 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 	 	return rect2;
 	  }
 
-	 
-	//this is in process 
 	public void remoteMouseDrag(int x,int y) {
 		System.out.println("Dragging ...");
 		remoteMouse(x,y);
 		System.out.println(x + " " + y);
 	}
+
+	//I'm working on this method.
+	public void remoteClipboardPaste() {
+		System.err.println("Now it's working as the first step");
+	}
 	 
 }
-
