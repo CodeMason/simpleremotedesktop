@@ -4,6 +4,11 @@ import java.awt.AWTException;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.Robot;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -140,9 +145,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		try{
 			r.keyPress(ke.getKeyCode());
 		}catch(IllegalArgumentException e){
-			if((System.getProperty("os.name")).equals("Mac OS X")){
-				r.keyPress(ke.VK_V + ke.VK_CONTROL);
-			}
+		
 		}
 	}
 	
@@ -169,7 +172,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 	@Override
 	public void remoteClipboardPaste() {
 		
-		System.err.println("Now it's working as the first step");
+		System.out.println("Now it's working as the first step");
 	}
 	 
 }
