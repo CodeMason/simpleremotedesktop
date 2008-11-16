@@ -56,6 +56,7 @@ import javax.swing.JFrame;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 
 import org.springframework.remoting.RemoteConnectFailureException;
 
@@ -67,6 +68,8 @@ public class Players implements
 	Component c;
 	int x = 0, y = 0;
 	String url = null;
+	
+	private final String DATAFLAVOR = "application/x-java-url; class=java.net.URL";
 	
 	public int originalX;
 	public int originalY;
@@ -360,7 +363,7 @@ public class Players implements
     		
     		try{
     			df2 = 
-    				new DataFlavor("application/x-java-url; class=java.net.URL");
+    				new DataFlavor(DATAFLAVOR);
     		}catch(ClassNotFoundException e){
     			System.err.println("Stuck here about custom flavor");
     			e.printStackTrace();
@@ -443,14 +446,45 @@ public class Players implements
     	}
     	
     	public void keyTyped(KeyEvent ke){
-    		System.err.println("Typed : " + ke.getKeyChar());
+    		System.err.println("Typed : " + ke.getKeyCode());
     		
-    		try{
-    			Main.rmiSpringService.remoteClipboardPaste();
-    		}catch(RemoteConnectFailureException e){
-    			System.err.println("The server might be down right now");
+    		//if((ke.getKeyCode() == ke.VK_V) && (ke.getKeyCode() == ke.VK_CONTROL)){
+    		if(ke.getKeyCode() == ke.KEY_LOCATION_UNKNOWN){
+    			System.err.println("Gotcha!!");
+    			Transferable trans = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
+    			Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
+    			//DataFlavor[] df = clip.getAvailableDataFlavors();
+    			DataFlavor[] df = trans.getTransferDataFlavors();
+    			String str;
+    			DataFlavor d3;
+    			
+    			for(DataFlavor d:df){
+    				try {
+    					d3 = new DataFlavor(DATAFLAVOR);
+  
+    					//if((d.getMimeType()).equals(d3.getMimeType()) ||
+    	    				//	d.isFlavorJavaFileListType() || 
+    	    					//d.isFlavorTextType() || d.isFlavorSerializedObjectType() || d == d3){
+						
+						//str = clip.getData(d3).toString();
+						//str = trans.getTransferData(d3).toString();
+    					str = clip.getData(d).toString();
+    						
+						Main.rmiSpringService.remoteClipboardPaste(str);
+    					//}else
+    						//System.err.println("DataFlavor : " + d);
+					}catch (UnsupportedFlavorException e) {
+						System.err.println("Unsupported");
+						System.err.println(d);
+					}catch (IOException e) {
+						System.err.println("IO Exception");
+					}catch(RemoteConnectFailureException e){
+						System.err.println("The server might be down right now");
+					}catch(ClassNotFoundException e){
+						System.err.println("Not found class");
+					}
+    			}
     		}
-    		
     	}
     }
     

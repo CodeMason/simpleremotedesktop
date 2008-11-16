@@ -170,8 +170,27 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 	}
 
 	//I'm working on this method.
-	public void remoteClipboardPaste() {
+	public void remoteClipboardPaste(String name) {
 		System.err.println("Now it's working as the first step");
+		System.err.println(name);
+		
+		/*Transferable trans = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
+		DataFlavor[] df = trans.getTransferDataFlavors();
+		File f = null;
+		
+		for(DataFlavor d:df){
+			if(trans != null && trans.isDataFlavorSupported(d)){
+				try{
+				
+					f = (File)trans.getTransferData(d);
+					
+				}catch(UnsupportedFlavorException e){
+					System.err.println("You have some issue with Flavor");
+				}catch(IOException ee){
+					System.err.println("You have some issue with IO");
+				}
+			}
+		}*/
 	}
 	 
 }

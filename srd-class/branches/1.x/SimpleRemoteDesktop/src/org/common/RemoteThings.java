@@ -20,6 +20,6 @@ public interface RemoteThings {
 	void remoteDragAndDrop(String name,byte[] b) ;
 	void remoteKeyBoardsPress(KeyEvent ke);
 	void remoteKeyBoardsRelease(KeyEvent ke);
-	void remoteClipboardPaste();  //I will use this feature rather than remoteDragg() 
+	void remoteClipboardPaste(String name);  //I will use this feature rather than remoteDragg() 
 	Rectangle remoteGetScreenSize(Rectangle rect);
 }
