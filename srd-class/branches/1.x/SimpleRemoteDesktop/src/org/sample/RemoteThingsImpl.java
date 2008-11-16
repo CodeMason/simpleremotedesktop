@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import org.common.RemoteThings;
 
@@ -169,28 +170,50 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		System.out.println(x + " " + y);
 	}
 
-	//I'm working on this method.
-	public void remoteClipboardPaste(String name) {
-		System.err.println("Now it's working as the first step");
-		System.err.println(name);
+	public void remoteClipboardCopy() {
 		
-		/*Transferable trans = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
-		DataFlavor[] df = trans.getTransferDataFlavors();
-		File f = null;
-		
-		for(DataFlavor d:df){
-			if(trans != null && trans.isDataFlavorSupported(d)){
-				try{
-				
-					f = (File)trans.getTransferData(d);
+			Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
+			DataFlavor[] df = clip.getAvailableDataFlavors();
+			int count = 0;
+			String str = null;
+			
+			for(DataFlavor d: df){
+				try {
 					
-				}catch(UnsupportedFlavorException e){
-					System.err.println("You have some issue with Flavor");
-				}catch(IOException ee){
-					System.err.println("You have some issue with IO");
+					if(clip.isDataFlavorAvailable(d)){
+						count++;
+						//str = clip.getData(d).toString();
+						System.out.println(clip.getData(d));
+						System.out.println(d);
+						break;
+					}
+				}catch (UnsupportedFlavorException e) {
+					System.err.println("Unsupported Flavor issue");
+				}catch(MalformedURLException e){
+					//do nothing
+				}catch(IOException e){
+					System.err.println("IO Issue");
 				}
 			}
-		}*/
 	}
-	 
+
+	public String remoteClipboardPaste() {
+
+		Transferable trans = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
+		String str = null;
+		
+		if(trans != null && trans.isDataFlavorSupported(DataFlavor.javaFileListFlavor)){
+			try {
+				str = trans.getTransferData(DataFlavor.javaFileListFlavor).toString();
+				//System.err.println(trans.getTransferData(DataFlavor.javaFileListFlavor).toString());
+				System.err.println("Object is : " + str);
+			} catch (UnsupportedFlavorException e) {
+				System.err.println("Unsupported");
+			} catch (IOException e) {
+				System.err.println("IO Error");
+			}
+		}
+		
+		return str;
+	}
 }

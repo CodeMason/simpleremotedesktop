@@ -35,6 +35,7 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.awt.dnd.DnDConstants;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.StringTokenizer;
 import java.util.Arrays;
@@ -448,41 +449,20 @@ public class Players implements
     	public void keyTyped(KeyEvent ke){
     		System.err.println("Typed : " + ke.getKeyCode());
     		
-    		//if((ke.getKeyCode() == ke.VK_V) && (ke.getKeyCode() == ke.VK_CONTROL)){
-    		if(ke.getKeyCode() == ke.KEY_LOCATION_UNKNOWN){
-    			System.err.println("Gotcha!!");
-    			Transferable trans = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
-    			Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
-    			//DataFlavor[] df = clip.getAvailableDataFlavors();
-    			DataFlavor[] df = trans.getTransferDataFlavors();
-    			String str;
-    			DataFlavor d3;
-    			
-    			for(DataFlavor d:df){
-    				try {
-    					d3 = new DataFlavor(DATAFLAVOR);
-  
-    					//if((d.getMimeType()).equals(d3.getMimeType()) ||
-    	    				//	d.isFlavorJavaFileListType() || 
-    	    					//d.isFlavorTextType() || d.isFlavorSerializedObjectType() || d == d3){
-						
-						//str = clip.getData(d3).toString();
-						//str = trans.getTransferData(d3).toString();
-    					str = clip.getData(d).toString();
-    						
-						Main.rmiSpringService.remoteClipboardPaste(str);
-    					//}else
-    						//System.err.println("DataFlavor : " + d);
-					}catch (UnsupportedFlavorException e) {
-						System.err.println("Unsupported");
-						System.err.println(d);
-					}catch (IOException e) {
-						System.err.println("IO Exception");
-					}catch(RemoteConnectFailureException e){
-						System.err.println("The server might be down right now");
-					}catch(ClassNotFoundException e){
-						System.err.println("Not found class");
-					}
+    		Transferable tra = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);	
+    		
+    		if(tra == null){
+    			try{
+    				Main.rmiSpringService.remoteClipboardCopy();
+    			}catch(RemoteConnectFailureException e){
+    				System.err.println("The server might be down right now");
+    			}
+    		}else if(tra != null){
+    		
+    			try{
+    				Main.rmiSpringService.remoteClipboardPaste();
+    			}catch(RemoteConnectFailureException e){
+    				System.err.println("The server might be down right now");
     			}
     		}
     	}
