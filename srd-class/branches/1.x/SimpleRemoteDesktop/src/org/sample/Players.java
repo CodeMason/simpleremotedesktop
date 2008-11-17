@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -36,7 +37,9 @@ import java.awt.dnd.DropTargetListener;
 import java.awt.dnd.DnDConstants;
 
 import java.net.MalformedURLException;
+import java.net.Socket;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.StringTokenizer;
 import java.util.Arrays;
 
@@ -459,10 +462,28 @@ public class Players implements
     			}
     		}else if(tra != null){
     		
+    			Socket clientSock = null;
+    			BufferedReader br = null;
+    			
     			try{
     				Main.rmiSpringService.remoteClipboardPaste();
+    				
+    				clientSock = new Socket("192.168.0.102",7777);
+    				//read the socket stream to get the contents of a file.
+    				br = new BufferedReader(new InputStreamReader(clientSock.getInputStream()));
+    				String ss;
+					
+					while((ss = br.readLine()) != null){
+						System.out.println(ss);
+					}
+						
+					
     			}catch(RemoteConnectFailureException e){
     				System.err.println("The server might be down right now");
+    			}catch(UnknownHostException e){
+    				System.err.println("Unknown host error");
+    			}catch(IOException e){
+    				System.err.println("IO issue");
     			}
     		}
     	}
@@ -580,6 +601,4 @@ public class Players implements
 	public void componentShown(ComponentEvent arg0) {
 		// TODO Auto-generated method stub
 	}
-	
-	
 }

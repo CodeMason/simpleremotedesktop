@@ -21,6 +21,6 @@ public interface RemoteThings {
 	void remoteKeyBoardsPress(KeyEvent ke);
 	void remoteKeyBoardsRelease(KeyEvent ke);
 	void remoteClipboardCopy();  //I will use this feature rather than remoteDragg() 
-	String remoteClipboardPaste();
+	void remoteClipboardPaste();
 	Rectangle remoteGetScreenSize(Rectangle rect);
 }

@@ -22,7 +22,11 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.MalformedURLException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 import org.common.RemoteThings;
 
@@ -40,6 +44,8 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 	int x = 0,y = 0;
 	Robot r = null;
 	Rectangle rect2;
+	
+	private String fileName = null;
 	
 	public RemoteThingsImpl(){
 		
@@ -197,8 +203,10 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 			}
 	}
 
-	public String remoteClipboardPaste() {
+	public void remoteClipboardPaste() {
 
+		//here, I should make a socket stream.
+		
 		Transferable trans = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
 		String str = null;
 		
@@ -214,6 +222,34 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 			}
 		}
 		
-		return str;
+		Socket fileSock = null;
+		PrintWriter pw = null;
+		BufferedReader in = null,br = null;
+		
+			try {//The IP address must be the client address
+				fileSock = new Socket("192.168.0.101",7777);
+				pw = new PrintWriter(fileSock.getOutputStream(),true);
+				in = new BufferedReader(new InputStreamReader(fileSock.getInputStream()));
+				br = new BufferedReader(new FileReader(str));
+				String s;
+				while((s = br.readLine()) != null){
+					pw.println(s);
+					System.out.println("Context :" + in.readLine());
+					//to see what's in the file
+				}
+			} catch (UnknownHostException e) {
+				System.err.println("Unknow host");
+			} catch (IOException e) {
+				System.err.println("IO exception for socket");
+			}
+			
+			try{
+			pw.close();
+			br.close();
+			in.close();
+			fileSock.close();
+			}catch(IOException e){
+				System.err.println("IO error in close() method");
+			}
 	}
 }
