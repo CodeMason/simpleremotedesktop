@@ -5,10 +5,10 @@
 
 Here are the functionalities that you will use on the application.
 
-*Drag and Drop
+* Drag and Drop
 
-*Type characters
+* Type characters
 
-*Move mouse
+* Move mouse
 
-*Use mouse wheel
+* Use mouse wheel
