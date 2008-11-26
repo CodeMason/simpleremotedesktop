@@ -1,7 +1,15 @@
 = Table of Content =
 
-<wiki:toc max_depth="5">
+<wiki:toc max_depth="8">
  * Introduction
   * [Requirements]
   * [How_to_run]
+ * Experiment
+  * [Experimental_Environment]
+  * [Sample_data]
+ * [Screenshots]
+ * [Java_RMI_Issues]
+ * [Limitations]
+ * [Future_Plan]
+ 
 </wiki:toc>
