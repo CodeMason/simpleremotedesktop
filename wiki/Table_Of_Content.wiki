@@ -5,7 +5,7 @@
   * [How_to_run]
  * Experiment
   * [Experimental_Environment]
-  * [Sample_data]
+  * [Sample_Data]
  * [Screenshots]
  * [Java_RMI_Issues]
  * [Limitations]
