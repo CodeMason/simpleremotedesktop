@@ -8,23 +8,16 @@ It uses the following technologies:
    * java.awt.Robot class
    * Spring RMI
 
-*JMF, Java Media Framework* This protocol is invented for real- 
-time streaming on the Internet.Real-time streaming means video con- 
-ferencing and VoIP applications. These applications can’t delay to de- 
-liver data but drop some data. There is a Java framework called ”Java 
-Media Framework” implementing RTP for the applications. I used the 
+*JMF, Java Media Framework* This protocol is invented for real time streaming on the Internet.Real-time streaming means video conferencing and VoIP applications. These applications can’t delay to deliver data but drop some data. There is a Java framework called ”Java Media Framework” implementing RTP for the applications. I used the 
 protocol to deliver the server’s screen to the client implementing the 
 framework. 
 
 *java.awt.Robot class* This class is originally written for automated 
-tests. It means that when we want to test programs, we make a pro- 
-gram which implements this class to test them. This class has methods 
-for typing characters, moving the mouse, wheeling the mouse and cap- 
-ture the screen. What the class differentiates from others is about the 
+tests. It means that when we want to test programs, we make a program which implements this class to test them. This class has methods 
+for typing characters, moving the mouse, wheeling the mouse and capture the screen. What the class differentiates from others is about the 
 mouse actions. There are other classes that deal with the position of 
 the mouse on the screen. They also calculate the position, but they 
-don’t move the mouse actually. So even though we want to click a but- 
-ton or move the mouse on a test, we can’t accomplish the task. Here is 
+don’t move the mouse actually. So even though we want to click a button or move the mouse on a test, we can’t accomplish the task. Here is 
 a trick about how to move the mouse and type characters on another 
 screen remotely.
 
