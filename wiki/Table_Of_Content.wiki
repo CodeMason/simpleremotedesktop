@@ -1,5 +1,3 @@
-= Table of Content =
-
 <wiki:toc max_depth="8">
  * Introduction
   * [Introduction]
