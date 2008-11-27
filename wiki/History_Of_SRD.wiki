@@ -1,7 +1,5 @@
 = History Of SRD =
 
 
-<a href="Architecture">previous</a>
-
-
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/Architecture">next</a>
 
