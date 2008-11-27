@@ -1,8 +1,15 @@
 = History Of SRD =
 
-
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Architecture">Next: Architecture</a>
 
-Here is the history of SRD
+This sections shows you a brief history of SRD.
+
+SRD 1.0 was initially created by Seiya Kawashima who had thoughts about user friendly remote desktop applications. As you may notice with the name, remote desktop applications are so powerful for you to control computers remotely taking advantage of technologies of networking, broadcasting and RMI, Remote Method Invocation or RPC, Remote Procedure Call.
+
+With his research, there were issues for remote desktop users. Those issues are such as difficulties of use and run even though well-known remote desktop applications like VNC.And also not so many remote desktop applications were written in Java rather than C, so Java developers didn't have a chance to see how doing things remotely was accomplished. This was a problem for the developers and himself.
+
+These three points were primary goals should be done. Technologies were there, but no one was able to get things done because of poor documentations for broadcasting technologies.
+
+Fortunately he had 3 weeks to read the poor documentations, understand them and write code having the solutions for the problems in his mind. Now SRD 1.0 is SRD 1.0.1 which is more stable and use new technologies. It's always evolving.  
 
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Architecture">Next: Architecture</a>
