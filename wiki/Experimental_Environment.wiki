@@ -1,13 +1,5 @@
-#summary One-sentence summary of this page.
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/How_to_run">Previous: How to run</a>  <a href="http://code.google.com/p/simpleremotedesktop/wiki/Sample_Data">Next: Sample Data</a>
 
-= Introduction =
+Here is the testing environment where SRD has been tested.
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ <a href="http://code.google.com/p/simpleremotedesktop/wiki/How_to_run">Previous: How to run</a>  <a href="http://code.google.com/p/simpleremotedesktop/wiki/Sample_Data">Next: Sample Data</a>                                            
