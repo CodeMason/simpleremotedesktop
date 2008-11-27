@@ -1,14 +1,6 @@
-#summary One-sentence summary of this page.
 #labels Phase-Design
+ <a href="http://code.google.com/p/simpleremotedesktop/wiki/Java_RMI_Issues">Previous: Java RMI Issues</a>  <a href="http://code.google.com/p/simpleremotedesktop/wiki/Future_Plan">Next: Future Plan</a>
 
-= Introduction =
+Here are some limitations of SRD
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ <a href="http://code.google.com/p/simpleremotedesktop/wiki/Java_RMI_Issues">Previous: Java RMI Issues</a>             <a href="http://code.google.com/p/simpleremotedesktop/wiki/Future_Plan">Next: Future Plan</a>                     
