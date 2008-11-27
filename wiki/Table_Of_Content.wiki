@@ -1,6 +1,7 @@
 #labels Featured
 <wiki:toc max_depth="8">
  * Introduction
+  * [History_Of_SRD]
   * [Architecture]
   * [Requirements]
   * [How_to_run]
