@@ -7,18 +7,77 @@
  * How long SRD takes to transfer file using Drag and Drop
  * How much SRD uses network resource
 
-<h2>Here are the actions on SRD which are moving mouse,typing characters and file transfers</h2>
- || *Each Action* || *Time(sec)* ||
- || Moving mouse || 0.12 ||
- || Typing characters || 0 ||
- || File transfer 1 || 7.45 ||
- || File transfer 2 || 331.086 ||
+<h2>The results of actions on SRD</h2>
+Actions include moving mouse,typeing characters and file transfers using drag and drop.
 
-
+ <table border="1">
  <tr>
-   <td><b>Each Action </b></td><td><b>Time (sec) </b></td>
-  </tr>  
+   <th><b> Each Action </b></th><th><b> Time (sec) </b></th>
+ </tr> 
+ <tr>
+   <td> Moving mouse </td><td> 0.12 </td>
+ </tr> 
+ <tr>   
+   <td> Typing characters </td><td> 0 (infinitely close to zero)</td>
+ </tr>
+ <tr>
+   <td> File transfer (size:61.4 KB) </td><td>7.45</td>
+ </tr> 
+ <tr>
+  <td> File transfer (size:4.94 MB) </td><td>331.086</td>
+ </tr>
+ </table>
 
-The size of file transfer 1 is 61.4 KB and the size of file transfer 2 is 4.94 MB.
+<h2> The results of network resource on SRD</h2>
+Network resource includes downloads and uploads when the client and server in the initial state and when they are in actions.
+
+*The server and the client are in the initial state.*
+
+The first through fourth columns are on client and the fifth through eighth columns are on server and the first row is downloads and the second row is uploads.
+
+ <table border="1">
+   <tr>
+     <th>Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th><th> Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th>
+   </tr>
+   <tr>
+     <td>0B</td><td>4KB</td><td>3KB</td><td>24KB</td><td>0B</td><td>4KB</td><td>16KB</td><td>4MB</td>
+   </tr>
+   <tr>
+     <td>0B</td><td>298B</td><td>176B</td><td>352B</td><td>0B</td><td>391B</td><td>378KB</td><td>107MB</td>
+   </tr>
+ </table>
+
+*The server and the client are just connected each other.* 
+
+The first through fourth columns are on client and the fifth through eighth columns are on server and the first row is downloads and the second row is uploads.
+
+ <table border="1">
+   <tr>
+     <th>Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th><th> Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th>
+   </tr>
+   <tr> 
+   <td>437KB</td><td>583KB</td><td>349KB</td><td>46MB</td><td>128B</td><td>29KB</td><td>16KB</td><td>5MB</td>
+   </tr>
+   <tr>
+     <td>100B</td><td>40KB</td><td>13KB</td><td>770KB</td><td>433KB</td><td>536KB</td><td>384KB</td><td>160MB</td>
+   </tr>
+ </table>
+
+*The server and the client talk each other typing characters,clicking mouse,moving mouse wheel.*
+
+The first through fourth columns are on client and the fifth through eighth columns are on server and the first row is downloads and the second row is uploads.
+
+ <table border="1">
+    <tr>
+     <th>Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th><th> Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th>
+   </tr>
+   <tr>
+     <td>376KB</td><td>583KB</td><td>349KB</td><td>114KB</td><td>10KB</td><td>29KB</td><td>14KB</td><td>5MB</td>
+   </tr>
+   <tr>
+     <td>10KB</td><td>40KB</td><td>10LB</td><td>1MB</td><td>368KB</td><Td>536KB</td><td>378KB</td><td>204MB</td>
+   </tr>
+ </table>
+
 
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Sample_Data">Previous: Sample Data</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Next: Screenshots</a>
