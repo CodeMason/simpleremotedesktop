@@ -1,12 +1,12 @@
 #labels Phase-Design
-= Introduction =
+= Requirements = 
 
-Add your content here.
+Here are requirements that you will need to run SRD.
+
+ * Java SDK above 1.5
+ * Spring framework, spring-2.0.6.jar
+
+Basically all you will  need is two of them above, but you will be recommended to use Maven for your ease of management of project dependencies. You will find where and how to use Maven on [MavenReference]
 
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+  
