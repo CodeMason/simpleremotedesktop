@@ -9,7 +9,7 @@
 
 <h2>Here are the actions on SRD which are moving mouse,typing characters and file transfers</h2>
  || *Each Action* || *Time(sec)* ||
- || Mouse movement || 0.12 ||
+ || Moving mouse || 0.12 ||
  || Typing characters || 0 ||
  || File transfer 1 || 7.45 ||
  || File transfer 2 || 331.086 ||
