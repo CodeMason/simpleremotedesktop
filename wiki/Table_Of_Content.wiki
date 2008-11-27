@@ -8,7 +8,8 @@
  * Experiment
   * [Experimental_Environment]
   * [Sample_Data]
- * [Screenshots]
+ * Screenshots of SRD
+  * [Screenshots]
  * Java RMI vs Spring RMI
   * [Java_RMI_Issues]
  * [Limitations]
