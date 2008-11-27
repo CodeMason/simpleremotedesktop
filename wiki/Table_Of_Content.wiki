@@ -1,6 +1,6 @@
 #labels Featured
 <wiki:toc max_depth="8">
- * <a href="http://code.google.com/p/simpleremotedesktop/wiki/History_Of_SRD">Introduction</a>
+ * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Introduction">Introduction</a>
   * [History_Of_SRD]
   * [Architecture]
   * [Requirements]
