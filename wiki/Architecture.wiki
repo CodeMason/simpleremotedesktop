@@ -1,5 +1,5 @@
 #labels Phase-Design
-<a href="http://code.google.com/p/simpleremotedesktop/wiki/Architecture">Previous</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Requirements">Next</a>           
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/History_Of_SRD">Previous:History Of SRD</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Requirements">Next: Requirements</a>           
 
 
 = Architecture of SRD =
@@ -21,4 +21,4 @@ It uses the following technologies:
 Now you might think that words are enough but want to see who three of these work visually. Here is a figure about how they work as SRD.
 http://www.thinkingdifferently.info/FinalProject.png
 
-<a href="http://code.google.com/p/simpleremotedesktop/wiki/Architecture">Previous</a>                               <a href="http://code.google.com/p/simpleremotedesktop/wiki/Requirements">Next</a>           
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/History_Of_SRD">Previous: History of SRD</a>                               <a href="http://code.google.com/p/simpleremotedesktop/wiki/Requirements">Next: Requirements</a>           
