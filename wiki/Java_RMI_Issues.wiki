@@ -1,1 +1,1 @@
-= Here is a list of Java RMI vs Spring RMI = 
+ <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Previous: Screenshots</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Limitations">Next: Limitations</a>                      
