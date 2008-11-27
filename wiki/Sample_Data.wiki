@@ -7,11 +7,11 @@
  * How long SRD takes to transfer file using Drag and Drop
  * How much SRD uses network resource
 
-<h2>Here are the actions on SRD</h2>
- ||*Each Action*||*Time(sec)*||
- ||Mouse movement||0.12||
- ||Typing characters||0 (infinitely close to zero)||
- ||File transfer (size: 61.4 KB)||7.45||
- ||File transfer (size: 4.97 MB)||331.086||
+<h2>Here are the actions on SRD which are moving mouse,typing characters and file transfers</h2>
+ || *Each Action* || *Time(sec)* ||
+ || Mouse movement || 0.12 ||
+ || Typing characters || 0 (infinitely close to zero) ||
+ || File transfer (size: 61.4 KB) || 7.45 ||
+ || File transfer (size: 4.97 MB) || 331.086 ||
 
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Sample_Data">Previous: Sample Data</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Next: Screenshots</a>
