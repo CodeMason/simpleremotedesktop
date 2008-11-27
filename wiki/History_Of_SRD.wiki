@@ -1,9 +1,7 @@
 = History Of SRD =
 
 
-
-
-
+<a href="Architecture">previous</a>
 
 
 
