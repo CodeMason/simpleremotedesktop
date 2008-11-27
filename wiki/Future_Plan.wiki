@@ -1,14 +1,6 @@
-#summary One-sentence summary of this page.
 #labels Phase-Support
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/Limitations">Previous: Limitations</a>  <a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQ">Next: FAQs</a>
 
-= Introduction =
+Here are some future plan of SRD
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/Limitations">Previous: Limitations</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQ">Next: FAQs</a>
