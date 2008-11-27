@@ -8,10 +8,12 @@
  * How much SRD uses network resource
 
 <h2>Here are the actions on SRD which are moving mouse,typing characters and file transfers</h2>
- || *Each Action*          || *Time(sec)*             ||
+ || *Each Action* || *Time(sec)* ||
  || Mouse movement || 0.12 ||
- || Typing characters || 0 (infinitely close to zero) ||
- || File transfer (size: 61.4 KB) || 7.45 ||
- || File transfer (size: 4.97 MB) || 331.086 ||
+ || Typing characters || 0 ||
+ || File transfer 1 || 7.45 ||
+ || File transfer 2 || 331.086 ||
+
+The size of file transfer 1 is 61.4 KB and the size of file transfer 2 is 4.94 MB.
 
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Sample_Data">Previous: Sample Data</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Next: Screenshots</a>
