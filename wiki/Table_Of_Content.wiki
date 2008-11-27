@@ -12,7 +12,9 @@
   * [Screenshots]
  * Java RMI vs Spring RMI
   * [Java_RMI_Issues]
- * [Limitations]
- * [Future_Plan]
+ * Limitations of SRD
+  * Limitations 
+ * Future Plan
+  * Future_Plan
  
 </wiki:toc>
