@@ -1,4 +1,6 @@
 #labels Featured,Phase-Deploy
+ <a href="http://code.google.com/p/simpleremotedesktop/wiki/Requirements">Previous: Requirements</a>  <a href="http://code.google.com/p/simpleremotedesktop/wiki/Experimental_Environment">Next: Experimental Environment</a>                     
+
 = How to run SRD =
 
 Here is the direction about how to play with SRD.
@@ -16,3 +18,5 @@ Since SRD is a client-server application, you will need to run the server first 
  #1 Download the SRDclient.jar
  #2 Type the command like below on the terminal or MS-command prompt
     <code>java -jar SRDclient.jar</code> 
+
+ <a href="http://code.google.com/p/simpleremotedesktop/wiki/Requirements">Previous: Requirements </a>  <a href="http://code.google.com/p/simpleremotedesktop/wiki/Experimental_Environment">Next: Experimental Environment</a>                      
