@@ -1,4 +1,4 @@
-#labels Featured,Phase-Design
+#labels Phase-Design
 = Functionalities =
 
 Here are the functionalities that you will use on the application.
