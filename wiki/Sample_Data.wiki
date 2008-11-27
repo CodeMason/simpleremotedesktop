@@ -1,14 +1,6 @@
-#summary One-sentence summary of this page.
 #labels Phase-Design
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/Sample_Data">Previous: Sample Data</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Next: Screenshots</a>
 
-= Introduction =
+Here are some sample data of SRD
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/Sample_Data">Previous: Sample Data</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Next: Screenshots</a>
