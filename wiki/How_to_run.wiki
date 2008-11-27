@@ -8,11 +8,11 @@ Since SRD is a client-server application, you will need to run the server first 
 Here is the order to start the server
 
  #1 Download the SRDserver.jar from Downloads
- #2 Type the command like below 
-    <code>java -jar SRDserver on the terminal or MS-command prompt</code>
+ #2 Type the command like below on the terminal or MS-command prompt 
+    <code>java -jar SRDserver</code>
 
 Here is the order to start the client
 
  #1 Download the SRDclient.jar
- #2 Type the command like below
-    <code>java -jar SRDclient.jar on the terminal or MS-command prompt</code> 
+ #2 Type the command like below on the terminal or MS-command prompt
+    <code>java -jar SRDclient.jar</code> 
