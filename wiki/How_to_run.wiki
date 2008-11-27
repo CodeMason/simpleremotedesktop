@@ -1,14 +1,18 @@
-#summary One-sentence summary of this page.
 #labels Featured,Phase-Deploy
+= How to run SRD =
 
-= Introduction =
+Here is the direction about how to play with SRD.
 
-Add your content here.
+Since SRD is a client-server application, you will need to run the server first and then start the client.
 
+Here is the order to start the server
 
-= Details =
+ #1 Download the SRDserver.jar from Downloads
+ #2 Type the command like below 
+    <code>java -jar SRDserver on the terminal or MS-command prompt</code>
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Here is the order to start the client
+
+ #1 Download the SRDclient.jar
+ #2 Type the command like below
+    <code>java -jar SRDclient.jar on the terminal or MS-command prompt</code> 
