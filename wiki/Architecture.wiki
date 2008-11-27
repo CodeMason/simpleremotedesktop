@@ -1,4 +1,7 @@
 #labels Phase-Design
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/Architecture">Previous</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Requirements">Next</a>           
+
+
 = Architecture of SRD =
 
 This is a remote desktop application in Java.
@@ -17,3 +20,5 @@ It uses the following technologies:
 
 Now you might think that words are enough but want to see who three of these work visually. Here is a figure about how they work as SRD.
 http://www.thinkingdifferently.info/FinalProject.png
+
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/Architecture">Previous</a>                               <a href="http://code.google.com/p/simpleremotedesktop/wiki/Requirements">Next</a>           
