@@ -8,7 +8,9 @@ As you can see from [Architecture] page, RMI or RPC is a great invention to invo
 
  * Jave RMI forces the users to type a long argument list when executing programs like below
  * For the Java developer, there is a difficulty to write code using RMI without some useful RMI pluging to make their life easier.
- * Less decoupling design pattern 
+ * Less decoupling design pattern
+ * Less configurable 
+ * Difficulty of using JNLP
 
 *On Microsoft OSes:*
 <code>
@@ -32,7 +34,10 @@ These command examples are from <a href="http://java.sun.com/docs/books/tutorial
 These issues are covered by Spring RMI.
 
 <h1>Advantage of Spring RMI</h1>
-
-
+ * Ease of using JNLP
+ * More configurable
+ * No long argument list for the users
+ * Maintainable
+ * More decoupling design pattern 
 
  <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Previous: Screenshots</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Limitations">Next: Limitations</a>                                 
