@@ -8,7 +8,7 @@
   * [Experimental_Environment]
   * [Sample_Data]
  * [Screenshots]
- *Java RMI vs Spring RMI
+ * Java RMI vs Spring RMI
   * [Java_RMI_Issues]
  * [Limitations]
  * [Future_Plan]
