@@ -12,7 +12,8 @@ As you can see from [Architecture] page, RMI or RPC is a great invention to invo
  * Less configurable 
  * Difficulty of using JNLP
 
-*On Microsoft OSes:*
+
+*The server on Microsoft OSes:*
 <code>
 java -cp c:\home\ann\src;c:\home\ann\public_html\classes\compute.jar
      -Djava.rmi.server.codebase=file:/c:/home/ann/public_html/classes/compute.jar
@@ -21,7 +22,7 @@ java -cp c:\home\ann\src;c:\home\ann\public_html\classes\compute.jar
      engine.ComputeEngine
 </code>
 
-*On other OSes:*
+*The server on other OSes:*
 <code>
 java -cp /home/ann/src:/home/ann/public_html/classes/compute.jar
      -Djava.rmi.server.codebase=http://zaphod/~ann/classes/compute.jar
@@ -29,6 +30,25 @@ java -cp /home/ann/src:/home/ann/public_html/classes/compute.jar
      -Djava.security.policy=server.policy
      engine.ComputeEngine
 </code>
+
+*The client on Microsoft OSes*
+
+<code>
+java -cp c:\home\jones\src;c:\home\jones\public_html\classes\compute.jar
+     -Djava.rmi.server.codebase=file:/c:/home/jones/public_html/classes/
+     -Djava.security.policy=client.policy
+	client.ComputePi zaphod.east.sun.com 45
+</code>
+
+*The client on other OSes*
+
+<code>
+java -cp /home/jones/src:/home/jones/public_html/classes/compute.jar
+     -Djava.rmi.server.codebase=http://ford/~jones/classes/
+     -Djava.security.policy=client.policy 
+        client.ComputePi zaphod.east.sun.com 45
+</code>
+
 These command examples are from <a href="http://java.sun.com/docs/books/tutorial/rmi/running.html">Running the Example (The Java Tutorials > RMI) </a> by Sun Microsystems.
 
 These issues are covered by Spring RMI.
