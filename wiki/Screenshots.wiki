@@ -1,14 +1,6 @@
-#summary One-sentence summary of this page.
 #labels Phase-Design
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/Sample_Data">Previous: Sample Data</a>  <a href="http://code.google.com/p/simpleremotedesktop/wiki/Java_RMI_Issues">Next: Java RMI Issues</a>
 
-= Introduction =
+You will see screenshots of SRD visually.
 
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/Sample_Data">Previous: Sample Data</a>  <a href="http://code.google.com/p/simpleremotedesktop/wiki/Java_RMI_Issues">Next: Java RMI Issues</a>
