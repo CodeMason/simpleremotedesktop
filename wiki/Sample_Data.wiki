@@ -8,7 +8,7 @@
  * How much SRD uses network resource
 
 <h2>Here are the actions on SRD which are moving mouse,typing characters and file transfers</h2>
- || *Each Action* || *Time(sec)* ||
+ || *Each Action*          || *Time(sec)*             ||
  || Mouse movement || 0.12 ||
  || Typing characters || 0 (infinitely close to zero) ||
  || File transfer (size: 61.4 KB) || 7.45 ||
