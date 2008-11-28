@@ -1,6 +1,13 @@
 #labels Phase-Support
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Limitations">Previous: Limitations</a>  <a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQ">Next: FAQs</a>
 
-You might notice the passion for SRD 1.0.1 
+SRD 1.0.1 is always evolving, so there is a future plan for it. The new features are available soon.
+
+<h1>List of the content of the future plan</h1>
+ * Central database for authentication
+ * Drag and drop from the server side
+ * communications through SSL
+ * pin point drag and drop
+ * support for wide screens
 
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Limitations">Previous: Limitations</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQ">Next: FAQs</a>
