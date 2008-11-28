@@ -14,7 +14,7 @@
   * [Java_RMI_Issues]
  * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Limitations_of_SRD">Limitations of SRD</a>
   * [Limitations] 
- * <h1><a href="http://code.google.com/p/simpleremotedesktop/wiki/Future">Future Plan</a></h1>
+ * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Future">Future Plan</a>
   * [Future_Plan]
  * <a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQ">FAQs</a>
   * [FAQ]
