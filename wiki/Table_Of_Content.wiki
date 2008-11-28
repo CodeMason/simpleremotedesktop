@@ -12,7 +12,7 @@
   * [Screenshots]
  * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Java_RMI_vs_Spring_RMI">Java RMI vs Spring RMI</a>
   * [Java_RMI_Issues]
- * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Limitations">Limitations of SRD</a>
+ * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Limitations_of_SRD">Limitations of SRD</a>
   * [Limitations] 
  * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Future_Plan">Future Plan
   * Future_Plan</a>
