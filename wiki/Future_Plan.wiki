@@ -1,6 +1,6 @@
 #labels Phase-Support
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Limitations">Previous: Limitations</a>  <a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQ">Next: FAQs</a>
 
-Here are some future plan of SRD
+You might notice the passion for SRD 1.0.1 
 
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Limitations">Previous: Limitations</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQ">Next: FAQs</a>
