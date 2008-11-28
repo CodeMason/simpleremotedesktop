@@ -1,0 +1,4 @@
+<h1>This section has one factor.</h1>
+
+ * <h1><a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQ">FAQs</a></h1>
+
