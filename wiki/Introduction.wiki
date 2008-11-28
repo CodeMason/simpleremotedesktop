@@ -1,6 +1,6 @@
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQs">Previous: FAQs</a> <a href="http://code.google.com/p/simpleremotedesktop/wiki/Experiment">Next: Experiment</a>
 
-<h1>This section has four factors below</h1>
+<h1>This section has four factors.</h1>
 
  * <h1><a href="http://code.google.com/p/simpleremotedesktop/wiki/History_Of_SRD">History of SRD</a></h1>
  * <h1><a href="http://code.google.com/p/simpleremotedesktop/wiki/Architecture">Architecture</a></h1>
