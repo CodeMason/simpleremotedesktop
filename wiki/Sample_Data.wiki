@@ -1,5 +1,5 @@
 #labels Phase-Design
-<a href="http://code.google.com/p/simpleremotedesktop/wiki/Sample_Data">Previous: Sample Data</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Next: Screenshots</a>
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/Experimental_Environment">Previous: Experimental Environment</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Next: Screenshots</a>
 
 <h2>Result of the experiments with SRD:</h2>
  * How long SRD takes to move mouse
@@ -79,5 +79,4 @@ The first through fourth columns are on client and the fifth through eighth colu
    </tr>
  </table>
 
-
-<a href="http://code.google.com/p/simpleremotedesktop/wiki/Sample_Data">Previous: Sample Data</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Next: Screenshots</a>
+<a href="http://code.google.com/p/simpleremotedesktop/wiki/Experimental_Environment">Previous: Experimental Environment</a>   <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Next: Screenshots</a>
