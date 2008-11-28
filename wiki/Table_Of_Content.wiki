@@ -16,6 +16,6 @@
   * [Limitations] 
  * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Future">Future Plan</a>
   * [Future_Plan]
- * <a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQ">FAQs</a>
+ * <a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQs">FAQs</a>
   * [FAQ]
 </wiki:toc>
