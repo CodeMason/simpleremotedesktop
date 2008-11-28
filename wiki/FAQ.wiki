@@ -1,5 +1,17 @@
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Future_Plan">Previous: Future Plan</a>
 
- #1
+ #1 <b>What does SRD stand for ? </b>
+    It stands for Simple Remote Desktop.
+ #2 <b>What's the goal of SRD ? </b>
+    The primary goal is to make remote desktop users and Java RMI developers easier to
+    run,use and develop. 
+ #3 <b>What's the current version of SRD ? </b>
+    The current version of SRD is SRD 1.0.1.
+ #4 
+ 
+
+
+
+
 
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Future_Plan">Previous: Future Plan</a>
