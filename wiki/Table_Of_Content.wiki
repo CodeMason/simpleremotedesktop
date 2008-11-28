@@ -5,7 +5,7 @@
   * [Architecture]
   * [Requirements]
   * [How_to_run]
- * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Experimental">Experiment</a>
+ * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Experiment">Experiment</a>
   * [Experimental_Environment]
   * [Sample_Data]
  * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots_of_SRD">Screenshots of SRD</a>
