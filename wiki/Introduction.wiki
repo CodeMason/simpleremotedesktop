@@ -1,6 +1,6 @@
 <h1>This section has four factors below</h1>
 
- * <h2><a href="http://code.google.com/p/simpleremotedesktop/wiki/History_Of_SRD">History of SRD</a></h2>
- * <h2><a href="http://code.google.com/p/simpleremotedesktop/wiki/Architecture">Architecture</a></h2>
- * <h2><a href="http://code.google.com/p/simpleremotedesktop/wiki/Requirements">Requirements</a></h2>
- * <h2><a href="http://code.google.com/p/simpleremotedesktop/wiki/How_to_run">How to run</a></h2>
+ * <h1><a href="http://code.google.com/p/simpleremotedesktop/wiki/History_Of_SRD">History of SRD</a></h1>
+ * <h1><a href="http://code.google.com/p/simpleremotedesktop/wiki/Architecture">Architecture</a></h1>
+ * <h1><a href="http://code.google.com/p/simpleremotedesktop/wiki/Requirements">Requirements</a></h1>
+ * <h1><a href="http://code.google.com/p/simpleremotedesktop/wiki/How_to_run">How to run</a></h1>
