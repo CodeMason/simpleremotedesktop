@@ -5,10 +5,10 @@
   * [Architecture]
   * [Requirements]
   * [How_to_run]
- * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Experimental_Environment">Experiment</a>
+ * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Experimental">Experiment</a>
   * [Experimental_Environment]
   * [Sample_Data]
- * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots">Screenshots of SRD</a>
+ * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Screenshots_of_SRD">Screenshots of SRD</a>
   * [Screenshots]
  * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Java_RMI_Issues">Java RMI vs Spring RMI</a>
   * [Java_RMI_Issues]
