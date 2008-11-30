@@ -18,4 +18,6 @@
   * [Future_Plan]
  * <a href="http://code.google.com/p/simpleremotedesktop/wiki/FAQs">FAQs</a>
   * [FAQ]
+ * <a href="http://code.google.com/p/simpleremotedesktop/wiki/Reference">Reference</a>
+  * [MavenReference] 
 </wiki:toc>
