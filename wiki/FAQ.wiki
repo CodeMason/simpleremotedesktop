@@ -12,8 +12,7 @@
     Desktop, and two is IRC and three is email me your questions.
  #5 <b>How do I report bugs ?</b>
     Please report bugs that you find to Issue section on google code.
- #6 <b>I am new to Java and don't know  how to run SRD using java -jar command. Is there 
-    easier way to run SRD rather than jar file ?</b>
+ #6 <b>I am new to Java and don't know  how to run SRD using java -jar command. Is there easier way to run SRD rather than jar file ?</b>
     Yes , there is a way to accomplish your question. The technology called JNLP which 
     enables you to run SRD with one click. SRD is having the feature soon as SRD 1.0.2. 
     Please wait for the time.
