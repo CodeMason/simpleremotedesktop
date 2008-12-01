@@ -16,8 +16,7 @@
     Yes , there is a way to accomplish your question. The technology called JNLP which 
     enables you to run SRD with one click. SRD is having the feature soon as SRD 1.0.2. 
     Please wait for the time.
- #7 <b>I hear that JMF has a lot of potentiality but Sun doesn't care much about the 
-    framework. Is SRD going to use the technology or change the implementation ?</b>
+ #7 <b>I hear that JMF has a lot of potentiality but Sun doesn't care much about the framework. Is SRD going to use the technology or change the implementation ?</b>
     You are correct about JMF. Right now Sun cares a lot more about media framework for 
     mobile phones rather than JMF and JMF is almost dead with a lot of potentiality. In 
     the near future, yes, SRD is going to stay with the framework, but the 
