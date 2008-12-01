@@ -21,13 +21,11 @@
     mobile phones rather than JMF and JMF is almost dead with a lot of potentiality. In 
     the near future, yes, SRD is going to stay with the framework, but the 
     implementations could be changed later depending on how effective it is for the users.
- #8 <b>I understand that SRD is still version 1.0.1. I want to request some features on 
-    SRD. How do I request them to you ?</b>
+ #8 <b>I understand that SRD is still version 1.0.1. I want to request some features on SRD. How do I request them to you ?</b>
     You request new features using google group, IRC chat or email. Alternatively, if you 
     are a Java developer, you would be able to add some features and show us what kind of 
     features you add and you are on.
- #9 <b>SRD suggests that you start the server first and the the client. What if I start 
-    the client first and then the server ?</b>
+ #9 <b>SRD suggests that you start the server first and the the client. What if I start the client first and then the server ?</b>
     You would get an error right now since the client trys connecting to the server to 
     use the services on the server side. If the client notices that the server is down 
     and can't get the services, the client stops working and returns an error. This is 
