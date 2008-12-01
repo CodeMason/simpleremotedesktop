@@ -7,11 +7,32 @@
     run,use and develop. 
  #3 <b>What's the current version of SRD ? </b>
     The current version of SRD is SRD 1.0.1.
- #4 
- 
-
-
-
-
+ #4 <b>Where do I get help ?</b>
+    There are 3 ways for you to get help. One is google group, named Simple Remote  
+    Desktop, and two is IRC and three is email me your questions.
+ #5 <b>How do I report bugs ?</b>
+    Please report bugs that you find to Issue section on google code.
+ #6 <b>I am new to Java and don't know  how to run SRD using java -jar command. Is there 
+    easier way to run SRD rather than jar file ?</b>
+    Yes , there is a way to accomplish your question. The technology called JNLP which 
+    enables you to run SRD with one click. SRD is having the feature soon as SRD 1.0.2. 
+    Please wait for the time.
+ #7 <b>I hear that JMF has a lot of potentiality but Sun doesn't care much about the 
+    framework. Is SRD going to use the technology or change the implementation ?</b>
+    You are correct about JMF. Right now Sun cares a lot more about media framework for 
+    mobile phones rather than JMF and JMF is almost dead with a lot of potentiality. In 
+    the near future, yes, SRD is going to stay with the framework, but the 
+    implementations could be changed later depending on how effective it is for the users.
+ #8 <b>I understand that SRD is still version 1.0.1. I want to request some features on 
+    SRD. How do I request them to you ?</b>
+    You request new features using google group, IRC chat or email. Alternatively, if you 
+    are a Java developer, you would be able to add some features and show us what kind of 
+    features you add and you are on.
+ #9 <b>SRD suggests that you start the server first and the the client. What if I start 
+    the client first and then the server ?</b>
+    You would get an error right now since the client trys connecting to the server to 
+    use the services on the server side. If the client notices that the server is down 
+    and can't get the services, the client stops working and returns an error. This is 
+    going to be fixed, but right now please follow the order.
 
 <a href="http://code.google.com/p/simpleremotedesktop/wiki/Future_Plan">Previous: Future Plan</a>
