@@ -1,9 +1,8 @@
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
-"http://www.springframework.org/dtd/spring-beans.dtd">
+<?xml version="1.0" encoding="UTF-8"?><beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-<beans>
-	<!-- This bean is for client -->
-	<bean id="rmiSpringService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+<!-- This bean is for client -->
+	
+	<bean autowire="default" class="org.springframework.remoting.rmi.RmiProxyFactoryBean" dependency-check="default" id="rmiSpringService" lazy-init="default">
 		<property name="serviceUrl">
 			<value>rmi://192.168.0.102:9000/RMISpring</value>
 		</property>
@@ -12,7 +11,7 @@
 		</property>
 	</bean>
 	
-	<bean id="RMISpringClient" class="org.sample.Main">
+	<bean autowire="default" class="org.sample.Main" dependency-check="default" id="RMISpringClient" lazy-init="default">
 		<property name="rmiSpringService">
 			<ref local="rmiSpringService"/>
 		</property>

@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -222,15 +223,20 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 			}
 		}
 		
+		ServerSocket sSocket = null;
+		
 		Socket fileSock = null;
+		//ServerSocket fileSock = null;
 		PrintWriter pw = null;
 		BufferedReader in = null,br = null;
 		
 			try {//The IP address must be the client address
-				fileSock = new Socket("192.168.0.101",7777);
+				sSocket = new ServerSocket(7777);
+				fileSock = sSocket.accept();
+				//fileSock = new Socket("192.168.0.101",7777);
 				pw = new PrintWriter(fileSock.getOutputStream(),true);
 				in = new BufferedReader(new InputStreamReader(fileSock.getInputStream()));
-				br = new BufferedReader(new FileReader(str));
+				br = new BufferedReader(new FileReader(analyzeString(str)));
 				String s;
 				while((s = br.readLine()) != null){
 					pw.println(s);
@@ -248,8 +254,32 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 			br.close();
 			in.close();
 			fileSock.close();
+			sSocket.close();
 			}catch(IOException e){
 				System.err.println("IO error in close() method");
 			}
+	}
+	
+	public String analyzeString(String str){
+		/*
+		 * The parameter has '[' and ']' to tell what a file name is.
+		 * To use the file name as a parameter of File object,
+		 * I have to remove them and get the correct path.
+		 * 
+		 */
+		
+		//check if the parameter follows the rule - starting with '['
+		//and ending with ']'
+		StringBuilder sb = new StringBuilder(str);
+		
+		if(sb.charAt(0) == '[' && (sb.charAt(str.length() - 1) == ']')){
+		
+			sb.deleteCharAt(0);
+			sb.deleteCharAt(str.length() - 1);
+		
+			return sb.toString();
+		}
+		
+			return null;
 	}
 }

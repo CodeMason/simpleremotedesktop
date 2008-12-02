@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SRD,Simple Remote Desktop</title>
+</head>
+<body>
+
+	<h1 align="center">SRD, Simple Remote Desktop, tutorial for everyone</h1>
+	<h2 align="center">Seiya Kawashima</h2>
+	<h2 align="center">Loyola University Chicago</h2>
+	<h2 align="center">seiya.kawashima@gmail.com</h2>
+	
+	<hr>
+	
+	<h2 id="00"><b>Table of Contents</b></h2>
+	<a href="#00">Contents</a>
+
+	<h2>Chapter 0. <a href="#0-01">How SRD looks like</a></h2>
+	<h2>Chapter 1. <a href="#1-01">Introduction</a></h2>
+	
+	1.1<a href="#1-02"> History of SRD</a><p/>
+	1.2<a href="#1-03"> Architecture</a><p/>
+	1.3<a href="#1-04"> Requirements</a><p/>
+	1.4<a href="#1-05"> How to run</a><p/>
+	
+	
+	<h2>Chapter 2. <a href="#2-01">Experiment</a></h2>
+
+	2.1<a href="#2-02"> Experimental Environment</a><p/>
+	2.2<a href="#2-03"> Sample Data</a><p/>
+	
+	<h2>Chapter 3. <a href="#3-01">Screen Shots of SRD</a></h2>
+	
+	3.1<a href="#3-02"> Screenshots</a><p/>
+	
+	<h2>Chapter 4. <a href="#4-01">Java RMI vs Spring RMI</a></h2>
+	
+	4.1<a href="#4-02"> Java RMI Issues</a><p/>
+	
+	<h2>Chapter 5. <a href="#5-01">Limitations of SRD</a></h2>
+	
+	5.1<a href="#5-02"> Limitations</a><p/>
+
+	<h2>Chapter 6. <a href="#6-01">Future</a></h2>
+	
+	6.1<a href="#6-02">Future Plan</a><p/>	
+	
+	<h2>Chapter 7. <a href="#7-01">FAQs</a></h2>
+	
+	7.1<a href="#7-02"> FAQ</a><p/>
+	
+	<h2>Chapter 8. <a href="#8-01">Reference</a></h2>
+	
+	8.1<a href="#8-02"> Maven Reference</a><p/>
+	
+	<hr/>
+	
+	<h2 id="0-01">Chapter 0. How SRD looks like</h2>
+	<img src="http://www.thinkingdifferently.info/IntroForUsers.png">
+	<p/>
+	
+	<h2 id="1-01">Chapter 1. Introduction</h2>
+	<h3 id="1-02">1.1 History of SRD</h3>
+	
+	This sections shows you a brief history of SRD.<p/>
+
+SRD 1.0 was initially created by Seiya Kawashima who had thoughts about user friendly remote desktop applications. As you may notice with the name, remote desktop applications are so powerful for you to control computers remotely taking advantage of technologies of networking, broadcasting and RMI, Remote Method Invocation or RPC, Remote Procedure Call.<p/>
+
+With his research, there were issues for remote desktop users. Those issues are such as difficulties of use and run even though well-known remote desktop applications like VNC.And also not so many remote desktop applications were written in Java rather than C, so Java developers didn't have a chance to see how doing things remotely was accomplished. This was a problem for the developers and himself.
+
+<p/>These three points were primary goals should be done. Technologies were there, but no one was able to get things done because of poor documentations for broadcasting technologies.
+
+<p/>Fortunately he had 3 weeks to read the poor documentations, understand them and write code having the solutions for the problems in his mind. Now SRD 1.0 is SRD 1.0.1 which is more stable and use new technologies. It's always evolving. 
+	
+	<h3 id="1-03">1.2 Architecture</h3>
+	
+	This section shows you the architecture of SRD.<p/>
+	
+	This is a remote desktop application in Java.<p/>
+
+It uses the following technologies:<p/>
+	<ul>
+    	<li>Java Media Framework</li>
+    	<li>java.awt.Robot class</li>
+        <li>Spring RMI</li>
+	</ul>
+	
+	 <b>JMF, Java Media Framework</b> This protocol is invented for real time streaming on the Internet.Real-time streaming means video conferencing and VoIP applications. These applications can’t delay to deliver data but drop some data. There is a Java framework called ”Java Media Framework” implementing RTP for the applications. I used the protocol to deliver the server’s screen to the client implementing the framework. 
+	 <p/><b>java.awt.Robot class</b> This class is originally written for automated tests. It means that when we want to test programs, we make a program which implements this class to test them. This class has methods for typing characters, moving the mouse, wheeling the mouse and capture the screen. What the class differentiates from others is about the mouse actions. There are other classes that deal with the position of the mouse on the screen. They also calculate the position, but they don’t move the mouse actually. So even though we want to click a button or move the mouse on a test, we can’t accomplish the task. Here is a trick about how to move the mouse and type characters on another screen remotely. 
+	 <p/><b>Spring RMI Remote Method Invocation, RMI</b> This is basically a remote procedure call. When we want to use RMI, we register interfaces that have meth- ods which we want to invoke remotely and put them and their imple- mentations on a place where clients can access anywhere in the world. After these steps, clients access the registry to look up the methods and invoke the methods that they want. These mechanisms make the remote desktop work. Robot class below takes care of the mouse ac- tions and typing characters, but we need a way to send these messages to the server. RMI does the job. So I use RMI to invoke Robot class’s methods remotely. 
+	 
+	 <p>Now you might think that words are enough but want to see who three of these work visually. Here is a figure about how they work as SRD.</p>
+	 
+	 <p> 
+	 <img src="http://www.thinkingdifferently.info/FinalProject.png" height="500" width="600">
+	 </p>
+	 
+	<h3 id="1-04">1.3 Requirements</h3>
+	
+	This section shows you the requirements for SRD to work.<p/>
+	
+	Here are requirements that you will need to run SRD. <p/>
+	
+	<ul>
+		<li><a href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=jdk-6u11-oth-JPR@CDS-CDS_Developer">Java SDK above 1.5</a></li>
+		<li><a href="http://www.springsource.org/download">Spring framework</li>
+		<li><a href="http://java.sun.com/javase/technologies/desktop/media/jmf/2.1.1/download.html">Java Media Framework</a></li>
+	</ul>
+	
+	Basically all you will need is two of them above, but you will be recommended to use Maven for your ease of management of project dependencies. You will find where and how to use Maven on <a href="#8-02">MavenReference</a>.<p/> 
+	
+	<h3 id="1-05">1.4 How to run</h3>
+	
+	This section shows you how to run SRD.<p/>
+	
+	Since SRD is a client-server application, you will need to run the server first and then start the client. <p/>
+	
+	<b>The order to start the server</b><p/>
+	<ol>
+		<li>Download the SRDserver.jar from Downloads</li>
+        <li> Type the command like below on the terminal or MS-command prompt</li>
+	</ol>
+	
+	<code>
+		java -jar SRDserver.jar
+	</code>
+	
+	<p/>
+	<b>The order to start the client</b>
+	<ol>
+		<li>Download the SRDclient.jar</li>
+		<li>Type the command like below on the terminal or MS-command prompt</li>
+	</ol>
+	
+	<code>
+		java -jar SRDclient.jar
+	</code>
+	
+	<h2 id="2-01">Chapter 2. Experiment</h2>
+	<h3 id="2-02">2.1 Experimental Environment</h3>
+	This section shows you the environment that SRD 1.1.1 has been tested.<p/>
+	
+	Since SRD is written in Java, it runs on any OSes which supports Java.Through out the coding and testing, SRD 1.0.1 is especially tested under the environment below.<p/>
+	
+	<ul>
+		<li><b>Mac OS X version 10.4.11, 1.5 GHz PowerPC G4, 1.25GB DDR SDRAM</b></li>
+        <li><b>Windows 2000 Service Pack 4, 850 MHz Pentium 3, 256MB</b></li>
+        <li><b>Windows Vista, 2.2 GHz Athlon 64x2 Dual-Core 4200+, 3GB </b></li>
+	</ul>
+	
+	<h3 id="2-03">2.2 Sample Data</h3>
+	
+	This section shows you some sample data from the testing of SRD.<p/>
+	
+	<h3>Result of the experiments with SRD:</h3>
+	
+	<ul>
+		<li>How long SRD takes to move mouse</li>
+        <li>How long SRD takes to type characters</li>
+        <li>How long SRD takes to transfer file using Drag and Drop</li>
+        <li>How much SRD uses network resource</li>
+	</ul>
+	
+	<h3>The results of actions on SRD</h3><p/>
+	
+	Actions include moving mouse,typeing characters and file transfers using drag and drop. <p/>
+	
+	 <table border="1">
+ <tr>
+   <th><b> Each Action </b></th><th><b> Time (sec) </b></th>
+ </tr> 
+ <tr>
+   <td> Moving mouse </td><td> 0.12 </td>
+ </tr> 
+ <tr>   
+   <td> Typing characters </td><td> 0 (infinitely close to zero)</td>
+ </tr>
+ <tr>
+   <td> File transfer (size:61.4 KB) </td><td>7.45</td>
+ </tr> 
+ <tr>
+  <td> File transfer (size:4.94 MB) </td><td>331.086</td>
+ </tr>
+ </table>
+	
+   <h3> The results of network resource on SRD</h3><p/>
+Network resource includes downloads and uploads when the client and server in the initial state and when they are in actions.<p/>
+   	
+	<b>The server and the client are in the initial state.</b><p/>
+	
+	The first through fourth columns are on client and the fifth through eighth columns are on server and the first row is downloads and the second row is uploads.<p/>
+	
+	 <table border="1">
+   <tr>
+     <th>Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th><th> Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th>
+   </tr>
+   <tr>
+     <td>0B</td><td>4KB</td><td>3KB</td><td>24KB</td><td>0B</td><td>4KB</td><td>16KB</td><td>4MB</td>
+   </tr>
+   <tr>
+     <td>0B</td><td>298B</td><td>176B</td><td>352B</td><td>0B</td><td>391B</td><td>378KB</td><td>107MB</td>
+   </tr>
+ </table>
+ 
+ <p/>
+   The server and the client are just connected each other.<p/>
+   
+   
+The first through fourth columns are on client and the fifth through eighth columns are on server and the first row is downloads and the second row is uploads.<p/>
+   
+	 <table border="1">
+   <tr>
+     <th>Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th><th> Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th>
+   </tr>
+   <tr> 
+   <td>437KB</td><td>583KB</td><td>349KB</td><td>46MB</td><td>128B</td><td>29KB</td><td>16KB</td><td>5MB</td>
+   </tr>
+   <tr>
+     <td>100B</td><td>40KB</td><td>13KB</td><td>770KB</td><td>433KB</td><td>536KB</td><td>384KB</td><td>160MB</td>
+   </tr>
+ </table>
+ 
+ <p/>
+ The server and the client talk each other typing characters,clicking mouse,moving mouse wheel.<p/>
+ 
+ 
+The first through fourth columns are on client and the fifth through eighth columns are on server and the first row is downloads and the second row is uploads.
+<p/>
+ 
+ <table border="1">
+    <tr>
+     <th>Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th><th> Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th>
+   </tr>
+   <tr>
+     <td>376KB</td><td>583KB</td><td>349KB</td><td>114KB</td><td>10KB</td><td>29KB</td><td>14KB</td><td>5MB</td>
+   </tr>
+   <tr>
+     <td>10KB</td><td>40KB</td><td>10LB</td><td>1MB</td><td>368KB</td><Td>536KB</td><td>378KB</td><td>204MB</td>
+   </tr>
+ </table> 
+	<h2 id="3-01">Chapter 3. Screen shots od SRD</h2>
+	<h3 id="3-02">3.1 Screenshots</h3>
+	
+	<h2 id="4-01">Chapter 4. Java RMI vs Spring RMI</h2>
+	<h3 id="4-02">4.1 Java RMI Issues</h3>
+	
+	This sections shows you some issues of Java RMI<p/>
+	
+	It's time for you to see why SRD swtiched its implementation from Java RMI to Spring RMI.
+
+As you can see from <a href="#1-03">Architecture</a> page, RMI or RPC is a great invention to invoke methods remotely over the wire. For the users and Java developers who use RMI, there are some issues when executing programs and developing with the technology. <p/>
+	
+	<h4>Issues with Java RMI</h4>
+	
+	<ul>
+	  <li>Jave RMI forces the users to type a long argument list when executing programs like below</li>
+      <li>For the Java developer, there is a difficulty to write code using RMI without some useful RMI pluging to make their life easier.</li>
+      <li>Less decoupling design pattern</li>
+      <li>Less configurable</li>
+      <li>Difficulty of using JNLP</li> 
+	</ul>
+	
+	<b>The server on Microsoft OSes:</b><p/>
+	
+	<code>
+	  java -cp c:\home\ann\src;c:\home\ann\public_html\classes\compute.jar -Djava.rmi.server.codebase=file:/c:/home/ann/public_html/classes/compute.jar      
+      -Djava.rmi.server.hostname=zaphod.east.sun.com
+      -Djava.security.policy=server.policy 
+      engine.ComputeEngine
+	</code>
+	<p/>
+	
+	<b>The server on other OSes:</b><p/>
+	<code>
+	  java -cp /home/ann/src:/home/ann/public_html/classes/compute.jar
+      -Djava.rmi.server.codebase=http://zaphod/~ann/classes/compute.jar      
+      -Djava.rmi.server.hostname=zaphod.east.sun.com
+      -Djava.security.policy=server.policy
+      engine.ComputeEngine? 
+	</code>
+	<p/>
+	
+	<b>The client on Microsoft OSes:</b><p/>
+	<code>
+	 java -cp c:\home\jones\src;c:\home\jones\public_html\classes\compute.jar
+      -Djava.rmi.server.codebase=file:/c:/home/jones/public_html/classes/      -Djava.security.policy=client.policy
+        client.ComputePi zaphod.east.sun.com 45
+	</code><p/>
+	
+	<b>The client on other OSes:</b><p/>
+	<code>
+     java -cp /home/jones/src:/home/jones/public_html/classes/compute.jar
+      -Djava.rmi.server.codebase=http://ford/~jones/classes/      -Djava.security.policy=client.policy 
+         client.ComputePi zaphod.east.sun.com 45
+	</code>
+	<p/>
+	
+These command examples are from <a href="http://java.sun.com/docs/books/tutorial/rmi/running.html">Running the Example (The Java Tutorials > RMI)</a> by Sun Microsystems.
+
+These issues are covered by Spring RMI.<p/>
+
+   <h4>Advantage of Spring RMI</h4>
+	
+   <ul>
+   	<li>Ease of using JNLP</li>
+    <li>More configurable</li>
+    <li>No long argument list for the users</li>
+    <li>Maintainable</li>
+    <li>More decoupling design pattern</li>
+   </ul> 	
+	
+   <b>The server on Microsoft OSes:</b><p/>
+   <code>
+     java -cp spring-2.0.6.jar;. engine.ComputeEngine
+   </code>
+   <p/>
+   
+   <b>The server on other OSes:</b><p/>
+   <code>
+   java -cp spring-2.0.6.jar:. engine.ComputeEngine
+   </code>
+   <p/>
+   
+   <b>The client on Microsoft OSes:</b><p/>
+   
+   <code>
+   java -cp spring-2.0.6.jar;. engine.ComputeEngine
+   </code>
+   <p/>
+   
+   <b>The client on other OSes:</b><p/>
+   <code>
+   java -cp spring-2.0.6.jar:. engine.ComputeEngine 
+   </code>
+    	
+	
+	
+	<h2 id="5-01">Chapter 5. Limitations of SRD</h2>
+	<h3 id="5-02">5.1 Limitations</h3>
+	
+	This section shows you current limitations of SRD<p/>
+	
+	SRD 1.0.1 has some limitations for the users because the implementation has been changed to put interesting features on it.<p/>
+	
+	<b>List of the limitations</b>
+	
+	<ul>
+      <li>No central database</li>
+      <li>No authentication</li>
+      <li>No drag and drop from the server side</li>
+      <li>No pin point file transfer using drag and drop</li>
+      <li>No screen support for wide screens</li>
+	</ul>
+	
+	<h2 id="6-01">Chapter 6. Future</h2>
+	<h3 id="6-02">6.1 Future Plan</h3>
+	
+	This section shows you the future plan of SRD<p/>
+	
+	<b>List of the content of the future plan</b>
+	
+	<ul>
+	  <li>Central database for authentication</li>
+      <li>Drag and drop from the server side</li>
+      <li>communications through SSL</li>
+      <li>pin point drag and drop</li>
+      <li>support for wide screens </li>
+	</ul>
+	
+	<h2 id="7-01">Chapter 7. FAQs</h2>
+	<h3 id="7-02">7.1 FAQ</h3>
+	
+	This section shows you FAQs of SRD<p/>
+	
+	<ol>
+		<li><b>What does SRD stand for ?</b></li>
+		It stands for Simple Remote Desktop.<p/>
+		<li><b>What's the goal of SRD ?</b></li>
+		The primary goal is to make remote desktop users and Java RMI developers easier to run,use and develop.<p/>
+		<li><b>What's the current version of SRD ?</b></li>
+		The current version of SRD is SRD 1.0.1.<p/>
+		<li><b>After downloading SRD, it doesn't start but get some errors.Is my installation correct ?</b></li>
+		Please make sure that you have the three requirements, Java 1.5+,Spring framework and Java Media Framework on the classpath.And then, you'll be all set.<p/>
+		<li><b>I'm a Mac user and want to use SRD on my Mac. Are there any restrictions for only Mac users regarding to the keyboard ?</b></li>
+		Yes, there are some restrictions for Mac users. Since Mac has some special keys on their keyboards such as option,apple keys. These keys are not assigned on SRD.<p/>
+		<li><b>SRD uses video broadcasting technology using Java Media Framework. It sounds like that CPU gets busy to do the job. What if I use an old PC to use SRD ?</b></li>
+		SRD does use JMF to handle desktop screen. Because of the technology choice, old PCs' CPUs get high usage and you will get some time lag.<p/>
+		<li><b>Why should I use SRD rather than other well-known remote desktop applications ?</b></li>
+		It is true that there are well-known remote desktop applications out there, but they don't try to make users use those applications easily. Their technologies are great for developers but not for users. they are not user friendly enough. Here SRD comes into play.<p/>
+		<li><b>I want to use Mac as the server and Linux as the client. Is this configuration correct ? Or is there any restrictions for the configuration ?</b></li>
+		Technically, there are no restrictions and SRD runs on any OSes which supports Java. But here is the thing. If you use Mac sa the server, you would get some errors about jmf.jar file. You should avoid the configuration right now. Later it would be changed.<p/>
+		<li><b> Where do I get help ?</b></li>
+        There are 3 ways for you to get help. One is google group, named Simple Remote Desktop, and two is IRC and three is email me your questions.<p/>
+        <li><b>How do I report bugs ?</b></li>
+        Please report bugs that you find to Issue section on google code.<p/>
+        <li><b>I am new to Java and don't know  how to run SRD using java -jar command. Is there easier way to run SRD rather than jar file ?</b></li>
+        Yes , there is a way to accomplish your question. The technology called JNLP which enables you to run SRD with one click. SRD is having the feature soon as SRD 1.0.2. Please wait for the time.<p/>
+        <li><b>I hear that JMF has a lot of potentiality but Sun doesn't care much about the framework. Is SRD going to use the technology or change the implementation ?</b></li>
+        You are correct about JMF. Right now Sun cares a lot more about media framework for mobile phones rather than JMF and JMF is almost dead with a lot of potentiality. In the near future, yes, SRD is going to stay with the framework, but the implementations could be changed later depending on how effective it is for the users.<p/>
+        <li><b>I understand that SRD is still version 1.0.1. I want to request some features on SRD. How do I request them to you ?</b></li>
+        You request new features using google group, IRC chat or email. Alternatively, if you are a Java developer, you would be able to add some features and show us what kind of features you add and you are on.<p/>
+        <li><b>SRD suggests that you start the server first and the the client. What if I start the client first and then the server ?</b></li>
+        You would get an error right now since the client trys connecting to the server to use the services on the server side. If the client notices that the server is down and can't get the services, the client stops working and returns an error. This is going to be fixed, but right now please follow the order.<p/>	
+	</ol>
+	
+	<h2 id="8-01">Chapter 8. Reference</h2>
+	<h3 id="8-02">8.1 Maven reference</h3>
+	Please see my <a href="http://www.thinkingdifferently.info/TopicProject.pdf">paper</a> about Apache Maven.<p/>
+</body>
+</html>

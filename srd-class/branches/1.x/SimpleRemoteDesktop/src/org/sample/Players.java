@@ -87,6 +87,7 @@ public class Players implements
 		frame.setSize(200,200);
 		
 		MediaLocator ml = new MediaLocator("rtp://" + Main.Addr + ":" + Main.Port + "/video/1");
+		
 		Player p = null;
 		
 		try{

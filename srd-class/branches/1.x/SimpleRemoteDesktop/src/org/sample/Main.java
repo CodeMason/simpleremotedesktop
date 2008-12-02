@@ -9,8 +9,11 @@ import org.common.RemoteThings;
 
 public class Main{
 
+	public static ApplicationContext context;
+	public static boolean b = false;
+	private static InputForm input;
 	public static String Addr;
-	public static String Port;
+	public static String Port = "9999";
 	protected static RemoteThings rmiSpringService; 
 	//This variable, rmiSpringService is supposed to be private
 	// as a Java Bean and getter/setter meaning.
@@ -20,22 +23,28 @@ public class Main{
 	}
 	
 	public static void main(String[] args){
+
+		runInputForm();
+		
+		
+		
+		//runApplicationContext();
+	}
 	
-		if(args.length != 2){
-			System.out.println("Usage: java Main Addr Port");
-			System.exit(0);
-		}
+	private static void runInputForm(){
 		
-		Addr = args[0];
-		Port = args[1];
+		SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				new InputForm();
+				//new Players();
+			}
+		});
+	}
 		
+	public static void runApplicationContext(){
 		ApplicationContext context = 
 			new FileSystemXmlApplicationContext("./conf/SpringRMIClient.xml");
 	
-		SwingUtilities.invokeLater(new Runnable(){
-			public void run(){
-				new Players();
-			}
-		});
+		Main.context = context;
 	}
 }

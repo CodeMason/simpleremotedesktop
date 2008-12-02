@@ -28,15 +28,16 @@ import org.xml.sax.SAXException;
 public class Helper{
 	
 	public static String ServerAddress = null;
+	public static boolean bb = false;
 	
-	public static void main(String[] args) throws IOException{
+	/*public static void main(String[] args) throws IOException{
 		
 		SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
 				new InputForm();
 			}
 		});
-		
+	*/
 		/*
 		 * I see what's happening here.
 		 * Since JFrame is on a separate thread, so before it gets the value
@@ -46,7 +47,7 @@ public class Helper{
 		 */
 		
 		//modApplicationContext();
-	}
+	//}
 	
 	public static void fileCheck() throws IOException{
 		
@@ -86,7 +87,7 @@ public class Helper{
 		
 	}
 	
-	public static void modApplicationContext(){
+	public static boolean modApplicationContext(){
 	/*public static void main(String[] args){
 		
 		if(args.length != 1){
@@ -95,8 +96,9 @@ public class Helper{
 		}	
 		*/
 		try {	
-		File file = new File("/Users/seiyakawashima/Desktop/Client.xml");
-	 
+		//File file = new File("/Users/seiyakawashima/Desktop/Client.xml");
+			File file = new File("./conf/SpringRMIClient.xml");
+			
 		//Create instance of DocumentBuilderFactory
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	 
@@ -119,8 +121,9 @@ public class Helper{
 		System.err.println("In there :" + ServerAddress);
 		
 		//this guy makes this method for main()
-		value.setTextContent(ServerAddress);
-	 
+		value.setTextContent("rmi://" + ServerAddress + ":9000/RMISpring");
+		System.err.println("You got: " + value.getTextContent());
+		
 		//set up a transformer
 		TransformerFactory transfac = TransformerFactory.newInstance();
 		Transformer trans = transfac.newTransformer();
@@ -134,13 +137,17 @@ public class Helper{
 	 
 	    OutputStream f0;
 		byte buf[] = xmlString.getBytes();
-		f0 = new FileOutputStream("/Users/seiyakawashima/Desktop/Client.xml");
+		//f0 = new FileOutputStream("/Users/seiyakawashima/Desktop/Client.xml");
+		f0 = new FileOutputStream("./conf/SpringRMIClient.xml");	
 		for(int i=0;i<buf .length;i++) {
 		   f0.write(buf[i]);
 		}
 		f0.close();
 		buf = null;
-	     }
+		
+		bb = true;
+	    
+		}
 	     catch(SAXException e) {
 		e.printStackTrace();		
 	     }
@@ -156,6 +163,8 @@ public class Helper{
 	     catch(TransformerException e) {
 	       e.printStackTrace();		
 	     }
+	     
+	     return bb;
 	}
 	
 	public static String getCharacterDataFromElement(Element e) {
