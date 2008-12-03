@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -193,7 +194,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 					if(clip.isDataFlavorAvailable(d)){
 						count++;
 						//str = clip.getData(d).toString();
-						System.out.println(clip.getData(d));
+						System.out.println("You got : " + clip.getData(d));
 						System.out.println(d);
 						break;
 					}
@@ -224,37 +225,78 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 			} catch (IOException e) {
 				System.err.println("IO Error");
 			}
-		}
-		
-		Socket fileSock = null;
+		}else
+			System.err.println("Clipboard might have some error");
+			
+		StringBuilder strBuilder = new StringBuilder(str);
+		strBuilder.deleteCharAt(0);
+		String str2 = strBuilder.substring(0, str.length()-2);
+		System.out.println("str2 : " + str2);
+		Socket clientSock = null;
+		BufferedReader br = null;
 		PrintWriter pw = null;
-		BufferedReader in = null,br = null;
 		
-			try {//The IP address must be the client address
-				fileSock = new Socket("192.168.0.101",7777);
-				pw = new PrintWriter(fileSock.getOutputStream(),true);
-				in = new BufferedReader(new InputStreamReader(fileSock.getInputStream()));
-				br = new BufferedReader(new FileReader(str));
-				String s;
-				while((s = br.readLine()) != null){
-					pw.println(s);
-					System.out.println("Context :" + in.readLine());
-					//to see what's in the file
-				}
-			} catch (UnknownHostException e) {
-				System.err.println("Unknow host");
-			} catch (IOException e) {
-				System.err.println("IO exception for socket");
+		try{
+			System.out.println("Setting up the client socket");
+			clientSock = new Socket("192.168.0.101",1111);
+		}catch(IOException e){
+			System.err.println("Can't make the client socket");
+		}
+			
+		try{
+			//read the socket stream to get the contents of a file.
+			pw = new PrintWriter(clientSock.getOutputStream(),true);
+			br = new BufferedReader(new BufferedReader(new FileReader(str2)));
+			
+			if(br != null)
+				System.out.println("Not null, good!");
+			else
+				System.out.println("Bad, it's NULL");
+			
+			String ss;
+			int count = 0;
+			while((ss = br.readLine()) != null){
+				System.out.println(count++);
+				pw.write(ss);
 			}
 			
-			try{
-			pw.close();
+			System.out.println("Done with writing output stream");
+			
+		}catch(UnknownHostException e){
+			System.err.println("Unknown host error");
+		}catch(IOException e){
+			e.getStackTrace();
+		}
+		
+		try{
 			br.close();
-			in.close();
-			fileSock.close();
-			}catch(IOException e){
-				System.err.println("IO error in close() method");
-			}
+			pw.close();
+			clientSock.close();
+		}catch(IOException e){
+			System.err.println("Error here in the client socket");
+		}
+	}
+	
+	public String analyzeString(String str){
+		/*
+		 * The parameter has '[' and ']' to tell what a file name is.
+		 * To use the file name as a parameter of File object,
+		 * I have to remove them and get the correct path.
+		 * 
+		 */
+		
+		//check if the parameter follows the rule - starting with '['
+		//and ending with ']'
+		StringBuilder sb = new StringBuilder(str);
+		
+		if(sb.charAt(0) == '[' && (sb.charAt(str.length() - 1) == ']')){
+		
+			sb.deleteCharAt(0);
+			sb.deleteCharAt(str.length() - 1);
+		
+			return sb.toString();
+		}
+		
+			return null;
 	}
 }
-
