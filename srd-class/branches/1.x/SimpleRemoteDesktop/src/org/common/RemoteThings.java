@@ -3,9 +3,12 @@ package org.common;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
+import java.io.PrintWriter;
 //import java.rmi.Remote;
 //import java.rmi.RemoteException;
+import java.net.Socket;
 
 /*Since I use Spring RMI, I don't use Remote interface from 
  * Java RMI.
@@ -21,7 +24,9 @@ public interface RemoteThings {
 	void remoteDragAndDrop(String name,byte[] b) ;
 	void remoteKeyBoardsPress(KeyEvent ke);
 	void remoteKeyBoardsRelease(KeyEvent ke);
-	void remoteClipboardCopy();  //I will use this feature rather than remoteDragg() 
+	String remoteClipboardCopy();  //I will use this feature rather than remoteDragg() 
 	void remoteClipboardPaste();
 	Rectangle remoteGetScreenSize(Rectangle rect);
+	void remoteSetUpClient(String target,Socket clientSock,
+			BufferedReader br,PrintWriter pw,String dest, int port);
 }

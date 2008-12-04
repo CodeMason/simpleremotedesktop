@@ -21,6 +21,7 @@ import java.io.StringWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.regex.PatternSyntaxException;
 
 import org.w3c.dom.*;
 
@@ -187,27 +188,30 @@ public class Helper{
 	  return "?";
 	}
 	
-	public static void setUpServer(){
-		System.out.println("Starting to set up the server");
+	//now the port is 11111, five 1s
+	public static void setUpServer(int port){
+		System.out.println("Starting to set up the server " + port);
 		
 		ServerSocket sSocket = null;
 		Socket fileSock = null;
 		BufferedReader in = null;
+		BufferedWriter out = null;
 		
 		try{
-			sSocket = new ServerSocket(11111);
-			System.out.println("Done with listening on the port");
+			sSocket = new ServerSocket(port);
+			System.out.println("Done with listening on the port " + port);
 		}catch(IOException e){
-			System.err.println("Can't listen on the port");
+			System.err.println("Can't listen on the port " + port);
 		}
 		
 		try {//The IP address must be the client address
-				System.out.println("Waiting ...");
+				System.out.println("Waiting ... " + port);
 				fileSock = sSocket.accept();
-				System.out.println("Got a client!!");
+				System.out.println("Got a client!! " + port);
 				
 				in = new BufferedReader(new InputStreamReader(fileSock.getInputStream()));
-			
+				out = new BufferedWriter(new FileWriter(setPath(Players.fileName)));
+				
 				String s;
 				while((s = in.readLine()) != null){
 					System.out.println("Context :" + s);
@@ -229,6 +233,39 @@ public class Helper{
 				System.err.println("Error here");
 			}
 				
-			System.out.println("Done with setting up the server");
+			System.out.println("Done with setting up the server " + port);
 	}
+	
+	public static String checkFileName(String fileName){
+		StringBuilder sb = new StringBuilder(fileName);
+		sb.deleteCharAt(0);
+		String str2 = sb.substring(0, fileName.length()-2);	
+		
+		String str3 = str2.replace('\\', '@');
+		
+		if(str3 == null)
+			str3 = str2.replace('/', '@');
+		
+		return str3;
+	}
+	
+	public static String analyzeFileName(String str3){
+		
+		String[] strArray = str3.split("@");
+		
+		return strArray[strArray.length-1];
+	}
+	
+	private static String setPath(String fileName){
+		String filePath;
+		
+	//	String os = System.getProperty("os.name");
+		//if(os.substring(0, 6).equals("Windows")){
+			filePath = System.getProperty("user.home") + File.separator + fileName;
+			return filePath;
+		//}
+		
+		
+	}
+	
 }

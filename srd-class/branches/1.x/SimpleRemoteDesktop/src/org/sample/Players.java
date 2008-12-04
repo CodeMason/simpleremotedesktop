@@ -204,7 +204,7 @@ public class Players implements
     		System.exit(1);
     	}
    
-    	System.out.println(this.x + " " + this.y);
+    	//System.out.println(this.x + " " + this.y);
     }
 
     public void mouseDragged(MouseEvent me){
@@ -467,21 +467,24 @@ public class Players implements
     	}
     	
     	public void keyTyped(KeyEvent ke){
-    		System.err.println("Typed : " + ke.getKeyCode());
+    		//System.err.println("Typed : " + ke.getKeyCode());
     		
     		try{
     			if(ke.getKeyChar() == 'a'){
+    				System.out.println("remoteClipboardPaste() called");
     				Main.rmiSpringService.remoteClipboardPaste();
     			}else if(ke.getKeyCode() == 0){
-    				Main.rmiSpringService.remoteClipboardCopy();
+    				System.out.println("remoteClipboardCopy() called");
+    				System.out.println(Helper.analyzeFileName(Helper.checkFileName(Main.rmiSpringService.remoteClipboardCopy())));
+    				fileName = Helper.analyzeFileName(Helper.checkFileName(Main.rmiSpringService.remoteClipboardCopy()));
     			}else
     				Main.rmiSpringService.remoteKeyBoardsPress(ke);
     			
     	}catch(RemoteConnectFailureException ee){
 			System.err.println("The server might be down right now");
 		}catch(IllegalArgumentException ee){
-			System.err.println("unrecognized keys");
-			ee.printStackTrace();
+			//System.err.println("unrecognized keys");
+			//ee.printStackTrace();
 		}
     		
     		/*Transferable tra = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);	
@@ -619,8 +622,8 @@ public class Players implements
 		
 		rect = frame.getBounds();
 		
-		System.out.println("rect : " + rect.getWidth() + " " + rect.getHeight());
-		System.out.println("rect x :" + rect.x + " " + "rect y : " + rect.y);
+		//System.out.println("rect : " + rect.getWidth() + " " + rect.getHeight());
+		//System.out.println("rect x :" + rect.x + " " + "rect y : " + rect.y);
 		
 		try{
 			Main.rmiSpringService.remoteGetScreenSize(rect);

@@ -25,6 +25,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.StringReader;
 
 import java.net.InetAddress;
 import java.net.MalformedURLException;
@@ -67,9 +68,9 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 
 		//r.mouseMove((int)(1024/(rect2.getWidth()))*x,((int)(768/(rect2.getHeight()))*y));
 
-		System.err.println("rec double X: " + resX + " " + "rec double Y: " + resY);
+		//System.err.println("rec double X: " + resX + " " + "rec double Y: " + resY);
 		r.mouseMove((int)resX, (int)resY);
-		System.err.println("rec X: " + (int)resX + "rect Y: " + (int)resY);
+		//System.err.println("rec X: " + (int)resX + "rect Y: " + (int)resY);
 	}
 
 	public void remoteMousePress(int buttons){
@@ -150,7 +151,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		System.out.println(x + " " + y);
 	}
 	
-	public void remoteClipboardCopy() {
+	public String remoteClipboardCopy() {
 		Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
 		DataFlavor[] df = clip.getAvailableDataFlavors();
 		int count = 0;
@@ -163,6 +164,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 					//str = clip.getData(d).toString();
 					System.out.println("You got : " + clip.getData(d));
 					System.out.println(d);
+					str = clip.getData(d).toString();
 					break;
 				}
 
@@ -174,6 +176,22 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 					System.err.println("IO Issue");
 				}
 			}
+		
+		System.err.println("You are :" + str);
+		
+		//String[] st = str.split(File.separator);
+		//System.out.println(st);
+		
+		//System.out.println("This is  : " + st[str.length()-1]);
+		
+		//return st[str.length()-1];
+		//Socket clientSock = null;
+		//BufferedReader br = null;
+		//PrintWriter pw = null;
+		
+		//The first parameter is now the target.
+		//remoteSetUpClient("Hello World", clientSock,br, pw,"192.168.0.101",11111);
+		return str;
 	}
 
 	public void remoteClipboardPaste() {
@@ -200,12 +218,14 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		strBuilder.deleteCharAt(0);
 		String str2 = strBuilder.substring(0, str.length()-2);
 
-		System.out.println("str2 : " + str2);
+		//System.out.println("str2 : " + str2);
 		
 		Socket clientSock = null;
 		BufferedReader br = null;
 		PrintWriter pw = null;
 		
+		remoteSetUpClient(str2, clientSock,br, pw,"192.168.0.101",11111);
+		/*
 		try{
 			System.out.println("Setting up the client socket");
 			clientSock = new Socket(InetAddress.getByName("192.168.0.101"),11111);
@@ -240,11 +260,68 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 			clientSock.close();
 		}catch(IOException e){
 			System.err.println("Error here in the client socket");
-		}
+		}*/
 	}
 
 	public String[] analyzeString(String str){
 			String[] st = str.split("\\");
 			return st;
+	}
+
+	public void remoteSetUpClient(String target, Socket clientSock,
+			BufferedReader br, PrintWriter pw, String dest,int port) {
+		
+		try{
+			System.out.println("Setting up the client socket");
+			clientSock = new Socket(InetAddress.getByName(dest),port);
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+
+		try{
+			//Read a filename as a String
+			File f = new File(target);
+			if(!f.isFile()){
+				//get a file name
+				br = new BufferedReader(new StringReader(target));
+				String ss;
+				int count = 0;
+
+				while((ss = br.readLine()) != null){
+					System.out.println(count++);
+					pw.write(ss);
+				}
+		
+				System.out.println("Done with writing output stream");
+			
+			}else if(f.isFile()){
+				//read the socket stream to get the contents of a file.
+				pw = new PrintWriter(clientSock.getOutputStream(),true);
+				br = new BufferedReader(new FileReader(f));
+			
+				String ss;
+				int count = 0;
+
+				while((ss = br.readLine()) != null){
+					System.out.println(count++);
+					pw.write(ss);
+				}
+		
+				System.out.println("Done with writing output stream");
+			}
+		}
+		catch(UnknownHostException e){
+			System.err.println("Unknown host error");
+		}catch(IOException e){
+			e.getStackTrace();
+		}
+		
+		try{
+			br.close();
+			pw.close();
+			clientSock.close();
+		}catch(IOException e){
+			System.err.println("Error here in the client socket");
+		}	
 	}
 }
