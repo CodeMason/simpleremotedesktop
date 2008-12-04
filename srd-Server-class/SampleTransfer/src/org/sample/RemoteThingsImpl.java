@@ -1,7 +1,3 @@
-                                                                     
-                                                                     
-                                                                     
-                                             
 package org.sample;
 
 import java.awt.AWTException;
@@ -28,6 +24,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -219,6 +216,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 			try {
 				str = trans.getTransferData(DataFlavor.javaFileListFlavor).toString();
 				//System.err.println(trans.getTransferData(DataFlavor.javaFileListFlavor).toString());
+				
 				System.err.println("Object is : " + str);
 			} catch (UnsupportedFlavorException e) {
 				System.err.println("Unsupported");
@@ -228,35 +226,32 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		}else
 			System.err.println("Clipboard might have some error");
 			
+		//Duplication occured here !!!
 		StringBuilder strBuilder = new StringBuilder(str);
 		strBuilder.deleteCharAt(0);
 		String str2 = strBuilder.substring(0, str.length()-2);
 		System.out.println("str2 : " + str2);
+	
 		Socket clientSock = null;
 		BufferedReader br = null;
 		PrintWriter pw = null;
 		
 		try{
 			System.out.println("Setting up the client socket");
-			clientSock = new Socket("192.168.0.101",1111);
+			clientSock = new Socket(InetAddress.getByName("192.168.0.101"),11111);
 		}catch(IOException e){
-			System.err.println("Can't make the client socket");
+			e.printStackTrace();
 		}
 			
 		try{
 			//read the socket stream to get the contents of a file.
 			pw = new PrintWriter(clientSock.getOutputStream(),true);
-			br = new BufferedReader(new BufferedReader(new FileReader(str2)));
-			
-			if(br != null)
-				System.out.println("Not null, good!");
-			else
-				System.out.println("Bad, it's NULL");
+			br = new BufferedReader(new FileReader(new File(str2)));
 			
 			String ss;
 			int count = 0;
 			while((ss = br.readLine()) != null){
-				System.out.println(count++);
+				System.out.println(ss);
 				pw.write(ss);
 			}
 			
@@ -277,26 +272,9 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		}
 	}
 	
-	public String analyzeString(String str){
-		/*
-		 * The parameter has '[' and ']' to tell what a file name is.
-		 * To use the file name as a parameter of File object,
-		 * I have to remove them and get the correct path.
-		 * 
-		 */
-		
-		//check if the parameter follows the rule - starting with '['
-		//and ending with ']'
-		StringBuilder sb = new StringBuilder(str);
-		
-		if(sb.charAt(0) == '[' && (sb.charAt(str.length() - 1) == ']')){
-		
-			sb.deleteCharAt(0);
-			sb.deleteCharAt(str.length() - 1);
-		
-			return sb.toString();
-		}
-		
-			return null;
+	public String[] analyzeString(String str){
+			String[] st = str.split("\\");
+			
+			return st;
 	}
 }
