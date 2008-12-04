@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Java RMI vs Spring RMI</title>
+</head>
+<body>
+
+<a href="Screenshots.html">Previous: Screenshots</a> <a href="TableOfContent.html">TOC</a> <a href="Limitations.html">Next: Limitations</a>
+
+<h1>Chapter 4. Java RMI vs Spring RMI</h1>
+<h2>4.1 Java RMI Issues</h2>
+
+This sections shows you some issues of Java RMI<p/>
+	
+	It's time for you to see why SRD swtiched its implementation from Java RMI to Spring RMI.
+
+As you can see from <a href= "Introduction.html/#Architecture">Architecture</a> page, RMI or RPC is a great invention to invoke methods remotely over the wire. For the users and Java developers who use RMI, there are some issues when executing programs and developing with the technology. <p/>
+	
+	<h4>Issues with Java RMI</h4>
+	
+	<ul>
+	  <li>Jave RMI forces the users to type a long argument list when executing programs like below</li>
+      <li>For the Java developer, there is a difficulty to write code using RMI without some useful RMI pluging to make their life easier.</li>
+      <li>Less decoupling design pattern</li>
+      <li>Less configurable</li>
+      <li>Difficulty of using JNLP</li> 
+	</ul>
+	
+	<b>The server on Microsoft OSes:</b><p/>
+	
+	<code>
+	  java -cp c:\home\ann\src;c:\home\ann\public_html\classes\compute.jar -Djava.rmi.server.codebase=file:/c:/home/ann/public_html/classes/compute.jar      
+      -Djava.rmi.server.hostname=zaphod.east.sun.com
+      -Djava.security.policy=server.policy 
+      engine.ComputeEngine
+	</code>
+	<p/>
+	
+	<b>The server on other OSes:</b><p/>
+	<code>
+	  java -cp /home/ann/src:/home/ann/public_html/classes/compute.jar
+      -Djava.rmi.server.codebase=http://zaphod/~ann/classes/compute.jar      
+      -Djava.rmi.server.hostname=zaphod.east.sun.com
+      -Djava.security.policy=server.policy
+      engine.ComputeEngine? 
+	</code>
+	<p/>
+	
+	<b>The client on Microsoft OSes:</b><p/>
+	<code>
+	 java -cp c:\home\jones\src;c:\home\jones\public_html\classes\compute.jar
+      -Djava.rmi.server.codebase=file:/c:/home/jones/public_html/classes/      -Djava.security.policy=client.policy
+        client.ComputePi zaphod.east.sun.com 45
+	</code><p/>
+	
+	<b>The client on other OSes:</b><p/>
+	<code>
+     java -cp /home/jones/src:/home/jones/public_html/classes/compute.jar
+      -Djava.rmi.server.codebase=http://ford/~jones/classes/      -Djava.security.policy=client.policy 
+         client.ComputePi zaphod.east.sun.com 45
+	</code>
+	<p/>
+	
+These command examples are from <a href="http://java.sun.com/docs/books/tutorial/rmi/running.html">Running the Example (The Java Tutorials > RMI)</a> by Sun Microsystems.
+
+These issues are covered by Spring RMI.<p/>
+
+   <h4>Advantage of Spring RMI</h4>
+	
+   <ul>
+   	<li>Ease of using JNLP</li>
+    <li>More configurable</li>
+    <li>No long argument list for the users</li>
+    <li>Maintainable</li>
+    <li>More decoupling design pattern</li>
+   </ul> 	
+	
+   <b>The server on Microsoft OSes:</b><p/>
+   <code>
+     java -cp spring-2.0.6.jar;. engine.ComputeEngine
+   </code>
+   <p/>
+   
+   <b>The server on other OSes:</b><p/>
+   <code>
+   java -cp spring-2.0.6.jar:. engine.ComputeEngine
+   </code>
+   <p/>
+   
+   <b>The client on Microsoft OSes:</b><p/>
+   
+   <code>
+   java -cp spring-2.0.6.jar;. engine.ComputeEngine
+   </code>
+   <p/>
+   
+   <b>The client on other OSes:</b><p/>
+   <code>
+   java -cp spring-2.0.6.jar:. engine.ComputeEngine 
+   </code>
+   <p/> 	
+	
+	<a href="Screenshots.html">Previous: Screenshots</a> <a href="TableOfContent.html">TOC</a> <a href="Limitations.html">Next: Limitations</a>
+
+</body>
+</html>

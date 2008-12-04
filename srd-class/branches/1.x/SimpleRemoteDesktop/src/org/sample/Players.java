@@ -68,10 +68,12 @@ public class Players implements
 				MouseMotionListener,MouseListener,MouseWheelListener,ComponentListener{//,Runnable{
 	
 	public static Rectangle rect;
+	public static String fileName;
 	JFrame frame;
 	Component c;
 	int x = 0, y = 0;
 	String url = null;
+	static int counter = 0; //counter for copy & paste
 	
 	private final String DATAFLAVOR = "application/x-java-url; class=java.net.URL";
 	
@@ -430,15 +432,27 @@ public class Players implements
     	long cTime = 0l;
     	long rTime = 0l;
     	
+    	//This method is just ignored
     	public void keyPressed(KeyEvent ke){
+    		
+    	}
+    	
+    /*	public void keyPressed(KeyEvent ke){
     		try{
-    			Main.rmiSpringService.remoteKeyBoardsPress(ke);
+    			if(ke.getKeyCode() == 0 && (counter % 2) == 0)
+    				Main.rmiSpringService.remoteClipboardCopy();
+    			else if(ke.getKeyCode() == 0 && (counter % 2) != 0)
+    				Main.rmiSpringService.remoteClipboardPaste();
+    			else
+    				Main.rmiSpringService.remoteKeyBoardsPress(ke);
     			
     		}catch(RemoteConnectFailureException e){
         		System.err.println("The server might be down right now");
         		System.exit(1);
+        	}catch(IllegalArgumentException e){
+        		System.err.println("unrecognized keys");
         	}
-    	}
+    	}*/
     	
     	public void keyReleased(KeyEvent ke){
     		
@@ -447,13 +461,30 @@ public class Players implements
     		}catch(RemoteConnectFailureException e){
         		System.err.println("The server might be down right now");
         		System.exit(1);
+        	}catch(IllegalArgumentException e){
+        		System.err.println("unrecognized keys");
         	}
     	}
     	
     	public void keyTyped(KeyEvent ke){
     		System.err.println("Typed : " + ke.getKeyCode());
     		
-    		Transferable tra = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);	
+    		try{
+    			if(ke.getKeyChar() == 'a'){
+    				Main.rmiSpringService.remoteClipboardPaste();
+    			}else if(ke.getKeyCode() == 0){
+    				Main.rmiSpringService.remoteClipboardCopy();
+    			}else
+    				Main.rmiSpringService.remoteKeyBoardsPress(ke);
+    			
+    	}catch(RemoteConnectFailureException ee){
+			System.err.println("The server might be down right now");
+		}catch(IllegalArgumentException ee){
+			System.err.println("unrecognized keys");
+			ee.printStackTrace();
+		}
+    		
+    		/*Transferable tra = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);	
     		
     		if(tra == null){
     			try{
@@ -465,6 +496,7 @@ public class Players implements
     		
     			Socket clientSock = null;
     			BufferedReader br = null;
+    			PrintWriter pw = null;
     			
     			try{
     				Main.rmiSpringService.remoteClipboardPaste();
@@ -487,6 +519,7 @@ public class Players implements
     				System.err.println("IO issue");
     			}
     		}
+    		*/
     	}
     }
     

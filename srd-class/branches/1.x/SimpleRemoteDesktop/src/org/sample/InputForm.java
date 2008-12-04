@@ -60,8 +60,7 @@ public class InputForm extends JPanel implements ActionListener{
 
 	public void actionPerformed(ActionEvent arg0) {
 		
-		//Helper.ServerAddress = text.getText();
-		//Main.Port = text2.getText();
+		//Analyzer should be here. Before Helper.ServerAddress gets String
 		Helper.ServerAddress = text.getText();
 		Main.Port = text2.getText();
 		Main.Addr = Helper.ServerAddress;
@@ -84,12 +83,6 @@ public class InputForm extends JPanel implements ActionListener{
 		System.out.println("Now :" + Main.Addr);
 		System.out.println("Now : InputForm : " + Helper.ServerAddress);
 		System.out.println("Now : " + Main.Port);
-		
-		//Main.runApplicationContext();
-		//Helper.modApplicationContext();
-		
-		//if(Helper.modApplicationContext())
-			//Main.runApplicationContext();
 	}
 	
 	public static boolean getTrue(boolean b){
@@ -107,8 +100,8 @@ public class InputForm extends JPanel implements ActionListener{
 	 * using regular express
 	 */
 
-	private boolean inputAnalyzer(){
+	private String inputAnalyzer(String ServerAddress){
 		
-		return true;
+		return null;
 	}
 }

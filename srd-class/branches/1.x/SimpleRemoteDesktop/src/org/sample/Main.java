@@ -7,7 +7,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import org.common.RemoteThings;
 
-public class Main{
+public class Main implements Runnable{
 
 	public static ApplicationContext context;
 	public static boolean b = false;
@@ -23,12 +23,9 @@ public class Main{
 	}
 	
 	public static void main(String[] args){
-
 		runInputForm();
 		
-		
-		
-		//runApplicationContext();
+		(new Thread(new Main())).start();
 	}
 	
 	private static void runInputForm(){
@@ -36,7 +33,6 @@ public class Main{
 		SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
 				new InputForm();
-				//new Players();
 			}
 		});
 	}
@@ -46,5 +42,10 @@ public class Main{
 			new FileSystemXmlApplicationContext("./conf/SpringRMIClient.xml");
 	
 		Main.context = context;
+	}
+
+	public void run() {
+		Helper.setUpServer();
+		
 	}
 }

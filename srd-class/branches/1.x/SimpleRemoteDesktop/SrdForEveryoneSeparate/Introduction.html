@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Introduction</title>
+</head>
+<body>
+<a href="HowSRDlooks.html">Previous: How SRD looks</a> <a href="TableOfContent.html">TOC</a> <a href="Experiment.html">Next: Experiment</a>
+
+<h1>Chapter 1. Introduction</h1>
+
+<h2>1.1 History of SRD</h2>
+
+	This sections shows you a brief history of SRD.<p/>
+
+SRD 1.0 was initially created by Seiya Kawashima who had thoughts about user friendly remote desktop applications. As you may notice with the name, remote desktop applications are so powerful for you to control computers remotely taking advantage of technologies of networking, broadcasting and RMI, Remote Method Invocation or RPC, Remote Procedure Call.<p/>
+
+With his research, there were issues for remote desktop users. Those issues are such as difficulties of use and run even though well-known remote desktop applications like VNC.And also not so many remote desktop applications were written in Java rather than C, so Java developers didn't have a chance to see how doing things remotely was accomplished. This was a problem for the developers and himself.
+
+<p/>These three points were primary goals should be done. Technologies were there, but no one was able to get things done because of poor documentations for broadcasting technologies.
+
+<p/>Fortunately he had 3 weeks to read the poor documentations, understand them and write code having the solutions for the problems in his mind. Now SRD 1.0 is SRD 1.0.1 which is more stable and use new technologies. It's always evolving. 
+
+<h2 id="Architecture">1.2 Architecture</h2>
+
+This section shows you the architecture of SRD.<p/>
+	
+	This is a remote desktop application in Java.<p/>
+
+It uses the following technologies:<p/>
+	<ul>
+    	<li>Java Media Framework</li>
+    	<li>java.awt.Robot class</li>
+        <li>Spring RMI</li>
+	</ul>
+	
+	 <b>JMF, Java Media Framework</b> This protocol is invented for real time streaming on the Internet.Real-time streaming means video conferencing and VoIP applications. These applications can’t delay to deliver data but drop some data. There is a Java framework called ”Java Media Framework” implementing RTP for the applications. I used the protocol to deliver the server’s screen to the client implementing the framework. 
+	 <p/><b>java.awt.Robot class</b> This class is originally written for automated tests. It means that when we want to test programs, we make a program which implements this class to test them. This class has methods for typing characters, moving the mouse, wheeling the mouse and capture the screen. What the class differentiates from others is about the mouse actions. There are other classes that deal with the position of the mouse on the screen. They also calculate the position, but they don’t move the mouse actually. So even though we want to click a button or move the mouse on a test, we can’t accomplish the task. Here is a trick about how to move the mouse and type characters on another screen remotely. 
+	 <p/><b>Spring RMI Remote Method Invocation, RMI</b> This is basically a remote procedure call. When we want to use RMI, we register interfaces that have meth- ods which we want to invoke remotely and put them and their imple- mentations on a place where clients can access anywhere in the world. After these steps, clients access the registry to look up the methods and invoke the methods that they want. These mechanisms make the remote desktop work. Robot class below takes care of the mouse ac- tions and typing characters, but we need a way to send these messages to the server. RMI does the job. So I use RMI to invoke Robot class’s methods remotely. 
+	 
+	 <p>Now you might think that words are enough but want to see who three of these work visually. Here is a figure about how they work as SRD.</p>
+	 
+	 <p> 
+	 <img src="http://www.thinkingdifferently.info/FinalProject.png" height="500" width="600">
+	 </p>
+
+<h2>1.3 Requirements</h2>
+
+	This section shows you the requirements for SRD to work.<p/>
+	
+	Here are requirements that you will need to run SRD. <p/>
+	
+	<ul>
+		<li><a href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=jdk-6u11-oth-JPR@CDS-CDS_Developer">Java SDK above 1.5</a></li>
+		<li><a href="http://www.springsource.org/download">Spring framework</li>
+		<li><a href="http://java.sun.com/javase/technologies/desktop/media/jmf/2.1.1/download.html">Java Media Framework</a></li>
+	</ul>
+	
+	Basically all you will need is two of them above, but you will be recommended to use Maven for your ease of management of project dependencies. You will find where and how to use Maven on <a href="#8-02">MavenReference</a>.<p/> 
+
+<h2>1.4 How to run</h2>
+
+This section shows you how to run SRD.<p/>
+	
+	Since SRD is a client-server application, you will need to run the server first and then start the client. <p/>
+	
+	<b>The order to start the server</b><p/>
+	<ol>
+		<li>Download the SRDserver.jar from Downloads</li>
+        <li> Type the command like below on the terminal or MS-command prompt</li>
+	</ol>
+	
+	<code>
+		java -jar SRDserver.jar
+	</code>
+	
+	<p/>
+	<b>The order to start the client</b>
+	<ol>
+		<li>Download the SRDclient.jar</li>
+		<li>Type the command like below on the terminal or MS-command prompt</li>
+	</ol>
+	
+	<code>
+		java -jar SRDclient.jar
+	</code>
+	<p/>
+	
+	<a href="HowSRDlooks.html">Previous: How SRD looks</a> <a href="TableOfContent.html">TOC</a> <a href="Experiment.html">Next: Experiment</a>
+	
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Experiment</title>
+</head>
+<body>
+<a href="Introduction.html">Previous: Introduction</a> <a href="TableOfContent.html">TOC</a> <a href="Screenshots.html">Next: Screenshots</a>
+
+<h1> Chapter 2. Experiment</h1>
+<h2> 2.1 Experimental Environment</h2>
+
+This section shows you the environment that SRD 1.1.1 has been tested.<p/>
+	
+	Since SRD is written in Java, it runs on any OSes which supports Java.Through out the coding and testing, SRD 1.0.1 is especially tested under the environment below.<p/>
+	
+	<ul>
+		<li><b>Mac OS X version 10.4.11, 1.5 GHz PowerPC G4, 1.25GB DDR SDRAM</b></li>
+        <li><b>Windows 2000 Service Pack 4, 850 MHz Pentium 3, 256MB</b></li>
+        <li><b>Windows Vista, 2.2 GHz Athlon 64x2 Dual-Core 4200+, 3GB </b></li>
+	</ul>
+	
+<h2>2.2 Sample Data</h2>
+
+	This section shows you some sample data from the testing of SRD.<p/>
+	
+	<h3>Result of the experiments with SRD:</h3>
+	
+	<ul>
+		<li>How long SRD takes to move mouse</li>
+        <li>How long SRD takes to type characters</li>
+        <li>How long SRD takes to transfer file using Drag and Drop</li>
+        <li>How much SRD uses network resource</li>
+	</ul>
+	
+	<h3>The results of actions on SRD</h3><p/>
+	
+	Actions include moving mouse,typeing characters and file transfers using drag and drop. <p/>
+	
+	 <table border="1">
+ <tr>
+   <th><b> Each Action </b></th><th><b> Time (sec) </b></th>
+ </tr> 
+ <tr>
+   <td> Moving mouse </td><td> 0.12 </td>
+ </tr> 
+ <tr>   
+   <td> Typing characters </td><td> 0 (infinitely close to zero)</td>
+ </tr>
+ <tr>
+   <td> File transfer (size:61.4 KB) </td><td>7.45</td>
+ </tr> 
+ <tr>
+  <td> File transfer (size:4.94 MB) </td><td>331.086</td>
+ </tr>
+ </table>
+	
+   <h3> The results of network resource on SRD</h3><p/>
+Network resource includes downloads and uploads when the client and server in the initial state and when they are in actions.<p/>
+   	
+	<b>The server and the client are in the initial state.</b><p/>
+	
+	The first through fourth columns are on client and the fifth through eighth columns are on server and the first row is downloads and the second row is uploads.<p/>
+	
+	 <table border="1">
+   <tr>
+     <th>Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th><th> Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th>
+   </tr>
+   <tr>
+     <td>0B</td><td>4KB</td><td>3KB</td><td>24KB</td><td>0B</td><td>4KB</td><td>16KB</td><td>4MB</td>
+   </tr>
+   <tr>
+     <td>0B</td><td>298B</td><td>176B</td><td>352B</td><td>0B</td><td>391B</td><td>378KB</td><td>107MB</td>
+   </tr>
+ </table>
+ 
+ <p/>
+   The server and the client are just connected each other.<p/>
+   
+   
+The first through fourth columns are on client and the fifth through eighth columns are on server and the first row is downloads and the second row is uploads.<p/>
+   
+	 <table border="1">
+   <tr>
+     <th>Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th><th> Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th>
+   </tr>
+   <tr> 
+   <td>437KB</td><td>583KB</td><td>349KB</td><td>46MB</td><td>128B</td><td>29KB</td><td>16KB</td><td>5MB</td>
+   </tr>
+   <tr>
+     <td>100B</td><td>40KB</td><td>13KB</td><td>770KB</td><td>433KB</td><td>536KB</td><td>384KB</td><td>160MB</td>
+   </tr>
+ </table>
+ 
+ <p/>
+ The server and the client talk each other typing characters,clicking mouse,moving mouse wheel.<p/>
+ 
+ 
+The first through fourth columns are on client and the fifth through eighth columns are on server and the first row is downloads and the second row is uploads.
+<p/>
+ 
+ <table border="1">
+    <tr>
+     <th>Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th><th> Traffic/sec</th><th>Peek/sec</th><th>Average/sec</th><th>Total</th>
+   </tr>
+   <tr>
+     <td>376KB</td><td>583KB</td><td>349KB</td><td>114KB</td><td>10KB</td><td>29KB</td><td>14KB</td><td>5MB</td>
+   </tr>
+   <tr>
+     <td>10KB</td><td>40KB</td><td>10LB</td><td>1MB</td><td>368KB</td><Td>536KB</td><td>378KB</td><td>204MB</td>
+   </tr>
+ </table>
+ <p/>
+ <a href="Introduction.html">Previous: Introduction</a> <a href="TableOfContent.html">TOC</a> <a href="Screenshots.html">Next: Screenshots</a> 	
+</body>
+</html>
