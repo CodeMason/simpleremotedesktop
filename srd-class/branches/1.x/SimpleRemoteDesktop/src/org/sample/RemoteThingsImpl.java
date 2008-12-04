@@ -225,8 +225,8 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		PrintWriter pw = null;
 		
 		remoteSetUpClient(str2, clientSock,br, pw,"192.168.0.101",11111);
-		/*
-		try{
+		
+		/*try{
 			System.out.println("Setting up the client socket");
 			clientSock = new Socket(InetAddress.getByName("192.168.0.101"),11111);
 		}catch(IOException e){
@@ -252,7 +252,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 			System.err.println("Unknown host error");
 		}catch(IOException e){
 			e.getStackTrace();
-		}
+		}*/
 
 		try{
 			br.close();
@@ -260,7 +260,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 			clientSock.close();
 		}catch(IOException e){
 			System.err.println("Error here in the client socket");
-		}*/
+		}
 	}
 
 	public String[] analyzeString(String str){

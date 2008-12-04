@@ -1,5 +1,14 @@
 package org.sample;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
 import javax.swing.SwingUtilities;
 
 import org.springframework.context.ApplicationContext;
@@ -45,8 +54,57 @@ public class Main implements Runnable{
 
 	public void run() {
 		//this is for getting file name
-		Helper.setUpServer(11111);
+		//Helper.setUpServer(11111);
 		//this is for file transfer
 		//Helper.setUpServer(11111);
+System.out.println("Starting to set up the server ");
+		
+		ServerSocket sSocket = null;
+		Socket fileSock = null;
+		BufferedReader in = null;
+		BufferedWriter out = null;
+		
+		try{
+			sSocket = new ServerSocket(11111);
+			System.out.println("Done with listening on the port ");
+		}catch(IOException e){
+			System.err.println("Can't listen on the port ");
+		}
+		
+		while(true){
+		
+		try {//The IP address must be the client address
+				System.out.println("Waiting ... ");
+				fileSock = sSocket.accept();
+				System.out.println("Got a client!! ");
+				
+				in = new BufferedReader(new InputStreamReader(fileSock.getInputStream()));
+				System.out.println(Helper.setPath(Players.fileName));
+				out = new BufferedWriter(new FileWriter(Helper.setPath(Players.fileName)));
+				
+				String s;
+				while((s = in.readLine()) != null){
+					System.out.println("Context :" + s);
+					out.write(s);
+					//to see what's in the file
+				}
+			}catch(NullPointerException e){
+				System.err.println("Check out your io settings");
+			} catch (UnknownHostException e) {
+				System.err.println("Unknow host");
+			} catch (IOException e) {
+				System.err.println("Accept() failed");
+			}
+			
+			try{
+				in.close();
+				out.close();
+				fileSock.close();
+				//sSocket.close();
+			}catch(IOException e){
+				System.err.println("Error here");
+			}	
+			System.out.println("Done with setting up the server ");
+		}
 	}
 }

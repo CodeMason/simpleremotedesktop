@@ -188,7 +188,7 @@ public class Helper{
 	  return "?";
 	}
 	
-	//now the port is 11111, five 1s
+	//This method is now moved in Main method !!
 	public static void setUpServer(int port){
 		System.out.println("Starting to set up the server " + port);
 		
@@ -198,11 +198,13 @@ public class Helper{
 		BufferedWriter out = null;
 		
 		try{
-			sSocket = new ServerSocket(port);
+			sSocket = new ServerSocket(11111);
 			System.out.println("Done with listening on the port " + port);
 		}catch(IOException e){
 			System.err.println("Can't listen on the port " + port);
 		}
+		
+		while(true){
 		
 		try {//The IP address must be the client address
 				System.out.println("Waiting ... " + port);
@@ -210,11 +212,13 @@ public class Helper{
 				System.out.println("Got a client!! " + port);
 				
 				in = new BufferedReader(new InputStreamReader(fileSock.getInputStream()));
+				System.out.println(setPath(Players.fileName));
 				out = new BufferedWriter(new FileWriter(setPath(Players.fileName)));
 				
 				String s;
 				while((s = in.readLine()) != null){
 					System.out.println("Context :" + s);
+					out.write(s);
 					//to see what's in the file
 				}
 			}catch(NullPointerException e){
@@ -227,13 +231,14 @@ public class Helper{
 			
 			try{
 				in.close();
+				out.close();
 				fileSock.close();
 				sSocket.close();
 			}catch(IOException e){
 				System.err.println("Error here");
-			}
-				
+			}	
 			System.out.println("Done with setting up the server " + port);
+		}
 	}
 	
 	public static String checkFileName(String fileName){
@@ -256,7 +261,7 @@ public class Helper{
 		return strArray[strArray.length-1];
 	}
 	
-	private static String setPath(String fileName){
+	public static String setPath(String fileName){
 		String filePath;
 		
 	//	String os = System.getProperty("os.name");
