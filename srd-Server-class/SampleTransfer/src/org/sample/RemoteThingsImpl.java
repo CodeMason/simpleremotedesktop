@@ -228,7 +228,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		BufferedReader br = null;
 		PrintWriter pw = null;
 		
-		//remoteSetUpClient(str2, clientSock,br, pw,"192.168.0.101",11111);
+		remoteSetUpClient(str2, clientSock,br, pw,"192.168.0.101",11111);
 		
 		/*
 		try{
