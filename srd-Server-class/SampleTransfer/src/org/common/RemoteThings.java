@@ -3,7 +3,10 @@ package org.common;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 public interface RemoteThings{
 
@@ -15,7 +18,9 @@ public interface RemoteThings{
     void remoteDragAndDrop(String name,byte[] b);  
 	void remoteKeyBoardsPress(KeyEvent ke);
 	void remoteKeyBoardsRelease(KeyEvent ke);
-	void remoteClipboardCopy();
+	String remoteClipboardCopy();
 	void remoteClipboardPaste();
 	Rectangle remoteGetScreenSize(Rectangle rect);
+	 void remoteSetUpClient(String target, Socket clientSock,
+				BufferedReader br, PrintWriter pw,String dest,int port);
 }
