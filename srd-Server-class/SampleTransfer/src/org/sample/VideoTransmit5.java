@@ -36,6 +36,7 @@ import javax.media.protocol.*;
 import javax.media.format.*;
 import javax.media.control.TrackControl;
 import javax.media.control.QualityControl;
+import javax.swing.SwingUtilities;
 
 import java.io.*;
 
@@ -60,6 +61,8 @@ public class VideoTransmit5 implements Runnable{
     public static String height;
     public static String width;
     public static Dimension screen;
+    
+    public static String clientAddr,clientPort;
     
     public VideoTransmit5(){
     	
@@ -299,7 +302,7 @@ public class VideoTransmit5 implements Runnable{
 
     /**
      * Setting the encoding quality to the specified value on the JPEG encoder.
-     * 0.5 is a good default.
+     * 0.5 is a good default. google
      */
     void setJPEGQuality(Player p, float val) {
 
@@ -423,9 +426,18 @@ public class VideoTransmit5 implements Runnable{
     
     public static void main(String [] args) {
     	
+    	//RemoteThingsImpl.yourAddr = args[0];
+    	
+    	SwingUtilities.invokeLater(new Runnable(){
+    		public void run(){
+    			new InputForm();
+    		}
+    	});
+    	
+    	
     	System.out.println("Starting ...");
     	
-    	(new Thread(new VideoTransmit5())).start();
+    	//(new Thread(new VideoTransmit5())).start();
     	
     	/* 
     	 * Either constructor is fine. The two argument one is
@@ -434,18 +446,20 @@ public class VideoTransmit5 implements Runnable{
     	
     	//VideoTransmit5 vt = new VideoTransmit5(args[0],args[1],args[2],args[3]);
     	
-    	VideoTransmit5 vt = new VideoTransmit5(args[0],args[1]);
+    	//VideoTransmit5 vt = new VideoTransmit5(RemoteThingsImpl.yourAddr,clientPort);
+    	//VideoTransmit5 = vt = new VideoTransmit5(clientAddr,clientPort);
     	
     	// Start the transmission
-    	String result = vt.start();
+    	//String result = vt.start();
 	
     	// result will be non-null if there was an error. The return
     	// value is a String describing the possible error. Print it.
-    	if (result != null) {
+    	/*if (result != null) {
     		System.err.println("Error : " + result);
     		System.exit(0);
     	}
 
     	System.err.println("Start transmission");
+    	*/
 	}
 }

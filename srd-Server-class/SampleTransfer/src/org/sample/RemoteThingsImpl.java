@@ -52,6 +52,8 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 	Robot r = null;
 	Rectangle rect2;
 	
+	public static String yourAddr;
+	
 	private String fileName = null;
 
 	public RemoteThingsImpl(){
@@ -216,7 +218,7 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		}else
 			System.err.println("Clipboard might have some error");
 
-		//Duplication occurred here
+		//Duplication occurred here gff google y
 		StringBuilder strBuilder = new StringBuilder(str);
 
 		strBuilder.deleteCharAt(0);
@@ -228,7 +230,8 @@ public class RemoteThingsImpl //extends UnicastRemoteObject
 		BufferedReader br = null;
 		PrintWriter pw = null;
 		
-		remoteSetUpClient(str2, clientSock,br, pw,"192.168.0.101",11111);
+		//remoteSetUpClient(str2, clientSock,br, pw,"192.168.0.101",11111);
+		remoteSetUpClient(str2,clientSock,br,pw,yourAddr,11111);
 		
 		/*
 		try{
