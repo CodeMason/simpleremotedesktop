@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -32,6 +33,13 @@ public class Main implements Runnable{
 	}
 	
 	public static void main(String[] args){
+		try {
+			RemoteThingsImpl.yourAddr = (InetAddress.getLocalHost()).getHostAddress().toString();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		runInputForm();
 		(new Thread(new Main())).start();
 	}

@@ -28,7 +28,7 @@ public class InputForm extends JPanel implements ActionListener{
 		FlowLayout fl = new FlowLayout();
 		
 		frame = new JFrame("Here you are");
-		frame.setSize(300, 300);
+		frame.setSize(300, 150);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		frame.setLayout(fl);

@@ -434,7 +434,14 @@ public class Players implements
     	
     	//This method is just ignored
     	public void keyPressed(KeyEvent ke){
-    		
+    		try{
+    			Main.rmiSpringService.remoteKeyBoardsPress(ke);
+    		}catch(RemoteConnectFailureException e){
+        		System.err.println("The server might be down right now");
+        		System.exit(1);
+        	}catch(IllegalArgumentException e){
+        		System.err.println("unrecognized keys");
+        	}
     	}
     	
     /*	public void keyPressed(KeyEvent ke){
@@ -469,16 +476,17 @@ public class Players implements
     	public void keyTyped(KeyEvent ke){
     		//System.err.println("Typed : " + ke.getKeyCode());
     		
+    		Main.rmiSpringService.remoteKeyBoardsPress(ke);
+    		
     		try{
-    			if(ke.getKeyChar() == 'a'){
+    			if(ke.getKeyChar() == '|'){
     				System.out.println("remoteClipboardPaste() called");
     				Main.rmiSpringService.remoteClipboardPaste();
-    			}else if(ke.getKeyCode() == 0){
+    			}else if(ke.getKeyChar() == '`'){
     				System.out.println("remoteClipboardCopy() called");
     				System.out.println(Helper.analyzeFileName(Helper.checkFileName(Main.rmiSpringService.remoteClipboardCopy())));
     				fileName = Helper.analyzeFileName(Helper.checkFileName(Main.rmiSpringService.remoteClipboardCopy()));
-    			}else
-    				Main.rmiSpringService.remoteKeyBoardsPress(ke);
+    			}
     			
     	}catch(RemoteConnectFailureException ee){
 			System.err.println("The server might be down right now");

@@ -4,7 +4,7 @@
 	
 	<bean autowire="default" class="org.springframework.remoting.rmi.RmiProxyFactoryBean" dependency-check="default" id="rmiSpringService" lazy-init="default">
 		<property name="serviceUrl">
-			<value>rmi://192.168.0.102:9000/RMISpring</value>
+			<value>rmi://10.20.12.242:9000/RMISpring</value>
 		</property>
 		<property name="serviceInterface">
 			<value>org.common.RemoteThings</value>
