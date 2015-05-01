@@ -1,0 +1,7 @@
+<a href='http://code.google.com/p/simpleremotedesktop/wiki/Java_RMI_vs_Spring_RMI'>Previous: Java RMI vs Spring RMI</a> <a href='http://code.google.com/p/simpleremotedesktop/wiki/Future'>Next: Future Plan</a>
+
+<h1>This section has one factor.</h1>
+
+  * <h1><a href='http://code.google.com/p/simpleremotedesktop/wiki/Limitations'>Limitations of SRD</a></h1>
+
+<a href='http://code.google.com/p/simpleremotedesktop/wiki/Java_RMI_vs_Spring_RMI'>Previous: Java RMI vs Spring RMI</a> <a href='http://code.google.com/p/simpleremotedesktop/wiki/Future'>Next: Future Plan</a>

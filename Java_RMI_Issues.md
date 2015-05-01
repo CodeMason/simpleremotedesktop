@@ -1,0 +1,90 @@
+It's time for you to see why SRD swtiched its implementation from Java RMI to Spring RMI.
+
+As you can see from [Architecture](Architecture.md) page, RMI or RPC is a great invention to invoke methods remotely over the wire. For the users and Java developers who use RMI, there are some issues when executing programs and developing with the technology.
+
+<h1>Issues with Java RMI</h1>
+
+  * Jave RMI forces the users to type a long argument list when executing programs like below
+  * For the Java developer, there is a difficulty to write code using RMI without some useful RMI pluging to make their life easier.
+  * Less decoupling design pattern
+  * Less configurable
+  * Difficulty of using JNLP
+
+
+**The server on Microsoft OSes:**
+```
+
+java -cp c:\home\ann\src;c:\home\ann\public_html\classes\compute.jar
+-Djava.rmi.server.codebase=file:/c:/home/ann/public_html/classes/compute.jar
+-Djava.rmi.server.hostname=zaphod.east.sun.com
+-Djava.security.policy=server.policy
+engine.ComputeEngine
+```
+
+**The server on other OSes:**
+```
+
+java -cp /home/ann/src:/home/ann/public_html/classes/compute.jar
+-Djava.rmi.server.codebase=http://zaphod/~ann/classes/compute.jar
+-Djava.rmi.server.hostname=zaphod.east.sun.com
+-Djava.security.policy=server.policy
+engine.ComputeEngine
+```
+
+**The client on Microsoft OSes**
+
+```
+
+java -cp c:\home\jones\src;c:\home\jones\public_html\classes\compute.jar
+-Djava.rmi.server.codebase=file:/c:/home/jones/public_html/classes/
+-Djava.security.policy=client.policy
+client.ComputePi zaphod.east.sun.com 45
+```
+
+**The client on other OSes**
+
+```
+
+java -cp /home/jones/src:/home/jones/public_html/classes/compute.jar
+-Djava.rmi.server.codebase=http://ford/~jones/classes/
+-Djava.security.policy=client.policy
+client.ComputePi zaphod.east.sun.com 45
+```
+
+These command examples are from <a href='http://java.sun.com/docs/books/tutorial/rmi/running.html'>Running the Example (The Java Tutorials > RMI) </a> by Sun Microsystems.
+
+These issues are covered by Spring RMI.
+
+<h1>Advantage of Spring RMI</h1>
+  * Ease of using JNLP
+  * More configurable
+  * No long argument list for the users
+  * Maintainable
+  * More decoupling design pattern
+
+**The server on Microsoft OSes**
+```
+
+java -cp spring-2.0.6.jar;. engine.ComputeEngine
+```
+
+**The server on other OSes**
+```
+
+java -cp spring-2.0.6.jar:. engine.ComputeEngine
+```
+
+**The client on Microsoft OSes**
+```
+
+java -cp spring-2.0.6.jar;. engine.ComputeEngine
+```
+
+**The client on other OSes**
+```
+
+java -cp spring-2.0.6.jar:. engine.ComputeEngine
+```
+
+
+> <a href='http://code.google.com/p/simpleremotedesktop/wiki/Screenshots'>Previous: Screenshots</a>   <a href='http://code.google.com/p/simpleremotedesktop/wiki/Limitations'>Next: Limitations</a>

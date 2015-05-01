@@ -1,0 +1,10 @@
+SRD 1.0.1 has some limitations for the users because the implementation has been changed to put interesting features on it.
+
+<h2>List of the limitations</h2>
+  * No central database
+  * No authentication
+  * No drag and drop from the server side
+  * No pin point file transfer using drag and drop
+  * No screen support for wide screens
+
+> <a href='http://code.google.com/p/simpleremotedesktop/wiki/Java_RMI_Issues'>Previous: Java RMI Issues</a>             <a href='http://code.google.com/p/simpleremotedesktop/wiki/Future_Plan'>Next: Future Plan</a>

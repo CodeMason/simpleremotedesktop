@@ -1,0 +1,11 @@
+# Functionalities #
+
+Here are the functionalities that you will use on the application.
+
+  * Drag and Drop
+
+  * Type characters
+
+  * Move mouse
+
+  * Use mouse wheel

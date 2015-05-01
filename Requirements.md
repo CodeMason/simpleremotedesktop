@@ -1,0 +1,11 @@
+# Requirements #
+
+Here are requirements that you will need to run SRD.
+
+  * Java SDK above 1.5
+  * Spring framework, spring-2.0.6.jar
+  * Java Media Framework, jmf.jar
+
+Basically all you will  need is two of them above, but you will be recommended to use Maven for your ease of management of project dependencies. You will find where and how to use Maven on [MavenReference](MavenReference.md)
+
+> <a href='http://code.google.com/p/simpleremotedesktop/wiki/Requirements'>Previous: Architecture</a>  <a href='http://code.google.com/p/simpleremotedesktop/wiki/How_to_run'>Next: How to run</a>
